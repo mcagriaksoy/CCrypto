@@ -23,6 +23,6 @@ It should be a positive integer value.
 uint8_t *md5_value: This is a pointer to the buffer where the MD5 hash value will be stored. 
 It should have enough space to store 16 bytes of data
 */
-static void str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size);
+void str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size);
 
 #endif // CCRYPTO_MD5_H

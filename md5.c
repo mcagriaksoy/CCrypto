@@ -1,13 +1,13 @@
 // 2023 - created by Mehmet Cagri Aksoy
 // github.com/mcagriaksoy
 
-#include "../include/checksum/md5.h"
+#include "md5.h"
 
 #include <stdlib.h>
-
+#include <string.h>
 #include <openssl/evp.h>
 
-static void str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size)
+void str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size)
 {
     EVP_MD_CTX *mdctx;
     unsigned char *md5_digest;
