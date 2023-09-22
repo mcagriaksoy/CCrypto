@@ -1,0 +1,18 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "Run tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/run_all_tests",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "Run tests"
+        }
+    ]
+}

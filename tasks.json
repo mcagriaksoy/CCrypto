@@ -1,0 +1,14 @@
+{
+    "version": "0.0.1",
+    "tasks": [
+        {
+            "label": "Run All tests",
+            "type": "shell",
+            "command": "./test/run_all_tests",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}
