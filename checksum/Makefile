@@ -2,9 +2,9 @@ CC = gcc
 
 CFLAGS = -I -Wall -Wextra -O3
 LIBS = -lssl -lcrypto
-SRCS = md5.c main.c sha3.c crc.c
+SRCS = md5.c sha3.c crc.c
 
-md5: md5.c main.c
+md5:
 	@$(CC) $(CFLAGS) -o test $(SRCS) $(LIBS)
 
 clean:
