@@ -4,7 +4,22 @@ C Crypto API that create layer between user and the complex openssl functions. M
 
 ## Modules
 ### Checksum
-ccrypto api has checksum ability. It supports crc calculations with different types, CRC-8, CRC-16 and CRC-32. Also supports, MD-5 and SHA-3 with types SHA3-224 , 256 and 512.
+ccrypto api has checksum support. It supports:
+
+1- CRC8, CRC16, CRC32
+
+2- md5
+
+3- SHA3 with 224, 256, 384, 512 bit support
+
+### Encryption
+ccrypto api has encryption support. It supports:
+
+1- AES with CBC and ECB mode.
+
+2- RSA
+
+3- Triple DES
 
 
 ## How to use
