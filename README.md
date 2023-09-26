@@ -19,14 +19,35 @@ ccrypto api has encryption support. It supports:
 
 2- RSA
 
-3- Triple DES
+3- (Triple) 3DES
 
 
 ## How to use
-You need to build the project first. The project is written by C and make file is included.
+As mentioned above, the Ccrypto API uses openssl base. So you need openssl installed in your system.
 
+In ubuntu or any debian distro`s you can type following to install openssl:
 
+` sudo apt-get install libssl-dev `
 
+Also you need to ensure that gcc is installed and supported in your system:
+
+` gcc --version ` 
+
+If there is no version displayed you need to install via following line:
+
+` sudo apt install build-essential gdb `
+
+For test purposes ccrypto uses CUnit test framework. You need to install it as well.
+
+` sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev `
+
+Afterwards you need to type only:
+
+` make `
+
+Under /test folder when you trigger the make, you will see the object named `run_all_tests`
+
+`./run_all_tests` with this command you trigger the all tests.
 ## Dependencies
 OpenSSL
 

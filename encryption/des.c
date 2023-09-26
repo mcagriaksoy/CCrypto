@@ -6,11 +6,14 @@
 #include <string.h>
 #include <openssl/evp.h>
 
-void des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned char *encrypted)
+#include "../common/types.h"
+
+ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned char *encrypted)
 {
     if (key == NULL || data == NULL || encrypted == NULL)
     {
-        return;
+        printf("Error: key, data and encrypted must not be NULL\n");
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     EVP_CIPHER_CTX *ctx = NULL;
@@ -18,7 +21,7 @@ void des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned cha
     if(!(ctx = EVP_CIPHER_CTX_new()))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     /* Initialise key and IV */
@@ -26,7 +29,7 @@ void des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned cha
     if(1 != EVP_EncryptInit_ex(ctx, EVP_des_ede3_ecb(), NULL, key, NULL))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }
     
     int len1 = 0;
@@ -36,7 +39,7 @@ void des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned cha
     if(1 != EVP_EncryptUpdate(ctx, encrypted, &len1, data, strlen(data)))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }  
 
     /* Finalise the encryption. Normally ciphertext bytes may be written at
@@ -46,18 +49,21 @@ void des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned cha
     if(1 != EVP_EncryptFinal_ex(ctx, encrypted + len1, &len2))
     {
         EVP_CIPHER_CTX_free(ctx);  
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
+
+    return CCRYPTO_SUCCESS;
 }
 
 
-void des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned char *data, unsigned char *encrypted)
+ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned char *data, unsigned char *encrypted)
 {
     if (key == NULL || data == NULL || encrypted == NULL || vector == NULL)
     {
+        printf("Error: key, data, vector and encrypted must not be NULL\n");
         return;
     }
 
@@ -66,7 +72,7 @@ void des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned c
     if(!(ctx = EVP_CIPHER_CTX_new()))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     /* Initialise key and IV */
@@ -74,7 +80,7 @@ void des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned c
     if(1 != EVP_EncryptInit_ex(ctx, EVP_des_ede3_cbc(), NULL, key, vector))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }
     
     int len1 = 0;
@@ -94,9 +100,11 @@ void des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned c
     if(1 != EVP_EncryptFinal_ex(ctx, encrypted + len1, &len2))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
+
+    return CCRYPTO_SUCCESS;
 }
