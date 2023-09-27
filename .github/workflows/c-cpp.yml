@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: openssl install
-      run: sudo apt-get install libssl
+      run: sudo apt-get install libssl-dev
     - name: unit test install
       run: sudo apt-get install libcunit1
     - name: make
