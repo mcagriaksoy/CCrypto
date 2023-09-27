@@ -21,6 +21,9 @@ ccrypto api has encryption support. It supports:
 
 3- (Triple) 3DES
 
+## Dependencies
+- OpenSSL
+- CUnit
 
 ## How to use
 As mentioned above, the Ccrypto API uses openssl base. So you need openssl installed in your system.
@@ -48,6 +51,5 @@ Afterwards you need to type only:
 Under /test folder when you trigger the make, you will see the object named `run_all_tests`
 
 `./run_all_tests` with this command you trigger the all tests.
-## Dependencies
-OpenSSL
+
 
