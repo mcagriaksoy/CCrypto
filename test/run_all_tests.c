@@ -134,7 +134,6 @@ void test_des_encrypt(void) {
     }
 }
 
-
 // Test
 int main() {
     CU_initialize_registry();
