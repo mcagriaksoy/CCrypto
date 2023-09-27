@@ -1,4 +1,4 @@
-# CCrypto API
+
 <a href="https://github.com/mcagriaksoy/CCrypto" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=mcagriaksoy&message=CCrypto&color=blue&logo=github" alt="mcagriaksoy - CCrypto"></a>
 <a href="https://github.com/mcagriaksoy/CCrypto/releases/"><img src="https://img.shields.io/github/tag/mcagriaksoy/CCrypto?include_prereleases=&sort=semver&color=blue" alt="GitHub tag"></a>
 <a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue" alt="License"></a>
