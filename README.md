@@ -5,9 +5,9 @@
 <a href="https://github.com/mcagriaksoy/CCrypto/releases/"><img src="https://img.shields.io/github/tag/mcagriaksoy/CCrypto?include_prereleases=&sort=semver&color=blue" alt="GitHub tag"></a>
 <a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue" alt="License"></a>
 <a href="https://github.com/mcagriaksoy/CCrypto/issues"><img src="https://img.shields.io/github/issues/mcagriaksoy/CCrypto" alt="issues - CCrypto"></a>
-<div align="center">
-<a href="https://github.com/mcagriaksoy/CCrypto/generate"><img src="https://img.shields.io/badge/Generate-Use_this_template-2ea44f?style=for-the-badge" alt="Use this template"></a>
-<a href="https://mcagriaksoy.github.io/CCrypto/"><img src="https://img.shields.io/badge/View_site-GH_Pages-2ea44f?style=for-the-badge" alt="View site - GH Pages"></a>
+[![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
+[![Hosted with GH Pages](https://img.shields.io/badge/Hosted_with-GitHub_Pages-blue?logo=github&logoColor=white)](https://pages.github.com/ "Go to GitHub Pages homepage")
+[![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://www.microsoft.com/ "Go to Microsoft homepage")
 
 ## Description
 C Crypto API that create layer between user and the complex openssl functions. My API aims to create user friendly functions for some crypto functions.
