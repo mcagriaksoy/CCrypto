@@ -16,7 +16,7 @@ jobs:
     - name: openssl install
       run: sudo apt-get install libssl-dev
     - name: unit test install
-      run: sudo apt-get install libcunit1
+      run: sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
     - name: make
       run: make
     - name: test
