@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "../common/types.h"
+
 // sha3 types.
 typedef enum{
     SHA3_224 = 224,
@@ -22,6 +24,6 @@ represented as a 56-character, 64-character, 96-character, or 128-character hexa
 The SHA3 algorithm is a cryptographic hash function that produces a fixed-length output from a
 variable-length input.
 */
-void str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_type, uint8_t *sha3_value, size_t *sha3_value_size);
+ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_type, uint8_t *sha3_value, size_t *sha3_value_size);
 
 #endif // CCRYPTO_SHA3_H

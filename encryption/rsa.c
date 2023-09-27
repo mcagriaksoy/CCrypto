@@ -7,8 +7,6 @@
 #include <openssl/pem.h>
 #include <openssl/err.h>
 
-#include "../common/types.h"
-
 ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char *public_key) {
     if (message == NULL || encrypted_message == NULL || public_key == NULL) {
         fprintf(stderr, "Error: message, encrypted_message and public_key must not be NULL\n");

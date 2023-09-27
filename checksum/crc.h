@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../common/types.h"
+
 typedef enum {
     CRC8 = 8,
     CRC16 = 16,
@@ -15,6 +17,6 @@ typedef enum {
 } crc_type_t;
 
 // CRC-8 (CRC-8-ATM) is a 8-bit CRC checksum algorithm.
-void str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc_value, size_t *crc_value_size);
+ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc_value, size_t *crc_value_size);
 
 #endif  // CCrypto_crc_h

@@ -6,6 +6,8 @@
 
 #include <stddef.h>
 
+#include "../common/types.h"
+
 typedef enum {
     AES_128 = 128,
     AES_192 = 192,
@@ -22,8 +24,9 @@ typedef enum {
  * @param iv The initialization vector (IV) for CBC mode.
  * @param ciphertext The output buffer to store the encrypted ciphertext.
  * @param ciphertext_len A pointer to the length of the ciphertext buffer.
+ * @return ccrypto_error_type
  */
-void encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
+ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
             unsigned char *ciphertext, size_t *ciphertext_len);
 
 /**
@@ -35,8 +38,9 @@ void encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_a
  * @param key The AES encryption key.
  * @param ciphertext The output buffer to store the encrypted ciphertext.
  * @param ciphertext_len A pointer to the length of the ciphertext buffer.
+ * @return ccrypto_error_type
  */
-void encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
+ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
             unsigned char *ciphertext, size_t *ciphertext_len);
 
 #endif //CCRYPTO_AES_H

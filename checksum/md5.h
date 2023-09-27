@@ -6,6 +6,9 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+
+#include "../common/types.h"
+
 /*
 The function str_to_md5 is a C function that calculates the MD5 hash of a given string and stores
 it in a buffer. The MD5 hash is a 128-bit value that is commonly represented as a 32-character
@@ -23,6 +26,6 @@ It should be a positive integer value.
 uint8_t *md5_value: This is a pointer to the buffer where the MD5 hash value will be stored. 
 It should have enough space to store 16 bytes of data
 */
-void str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size);
+ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size);
 
 #endif // CCRYPTO_MD5_H

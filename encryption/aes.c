@@ -5,20 +5,21 @@
 #include <string.h>
 #include <openssl/evp.h>
 
-
-void encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
+ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
             unsigned char *ciphertext, size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || iv == NULL || ciphertext == NULL || ciphertext_len == NULL)
     {
-        return;
+        printf("Error: plaintext, key, iv, ciphertext and ciphertext_len must not be NULL\n");
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     EVP_CIPHER_CTX *ctx = NULL;
     /* Create and initialise the context */
     if(!(ctx = EVP_CIPHER_CTX_new()))
     {
-        return;
+        printf("Error: EVP_CIPHER_CTX_new failed\n");
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     EVP_CIPHER *cipher_type = NULL;
@@ -34,13 +35,17 @@ void encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_a
             cipher_type = EVP_aes_256_cbc();
             break;
         default:
-            return;
+            printf("Error: Invalid aes size.\n");
+            free(cipher_type);
+            return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     /* Initialise key and IV */
     if(1 != EVP_EncryptInit_ex(ctx, cipher_type, NULL, key, iv))
     {
-        return;
+        printf("Error: EVP_EncryptInit_ex failed\n");
+        EVP_CIPHER_CTX_free(ctx);
+        return CCRYPTO_ERROR_OPENSSL;
     }
     
     int len1 = 0;
@@ -49,7 +54,9 @@ void encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_a
      */
     if(1 != EVP_EncryptUpdate(ctx, ciphertext, &len1, plaintext, plaintext_len))
     {
-        return;
+        printf("Error: EVP_EncryptUpdate failed\n");
+        EVP_CIPHER_CTX_free(ctx);
+        return CCRYPTO_ERROR_OPENSSL;
     }  
 
     /* Finalise the encryption. Normally ciphertext bytes may be written at
@@ -58,28 +65,34 @@ void encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_a
     int len2 = 0;
     if(1 != EVP_EncryptFinal_ex(ctx, ciphertext + len1, &len2))
     {
-        return;
+        printf("Error: EVP_EncryptFinal_ex failed\n");
+        EVP_CIPHER_CTX_free(ctx);
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     *ciphertext_len = (len1 + len2);
 
     /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
+
+    return CCRYPTO_SUCCESS;
 }
 
-void encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
+ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
             unsigned char *ciphertext, size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || ciphertext == NULL || ciphertext_len == NULL)
     {
-        return;
+        printf("Error: plaintext, key, ciphertext and ciphertext_len must not be NULL\n");
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     EVP_CIPHER_CTX *ctx = NULL;
     /* Create and initialise the context */
     if(!(ctx = EVP_CIPHER_CTX_new()))
     {
-        return;
+        printf("Error: EVP_CIPHER_CTX_new failed\n");
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     EVP_CIPHER *cipher_type = NULL;
@@ -95,13 +108,17 @@ void encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_a
             cipher_type = EVP_aes_256_ecb();
             break;
         default:
-            return;
+            printf("Error: Invalid aes size.\n");
+            free(cipher_type);
+            return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     /* Initialise key*/
     if(1 != EVP_EncryptInit_ex(ctx, cipher_type, NULL, key, NULL))
     {
-        return;
+        printf("Error: EVP_EncryptInit_ex failed\n");
+        EVP_CIPHER_CTX_free(ctx);
+        return CCRYPTO_ERROR_OPENSSL;
     }
     
     int len1 = 0;
@@ -110,7 +127,9 @@ void encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_a
      */
     if(1 != EVP_EncryptUpdate(ctx, ciphertext, &len1, plaintext, plaintext_len))
     {
-        return;
+        printf("Error: EVP_EncryptUpdate failed\n");
+        EVP_CIPHER_CTX_free(ctx);
+        return CCRYPTO_ERROR_OPENSSL;
     }  
 
     /* Finalise the encryption. Normally ciphertext bytes may be written at
@@ -119,11 +138,15 @@ void encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_a
     int len2 = 0;
     if(1 != EVP_EncryptFinal_ex(ctx, ciphertext + len1, &len2))
     {
-        return;
+        printf("Error: EVP_EncryptFinal_ex failed\n");
+        EVP_CIPHER_CTX_free(ctx);
+        return CCRYPTO_ERROR_OPENSSL;
     }
 
     *ciphertext_len = (len1 + len2);
 
     /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
+
+    return CCRYPTO_SUCCESS;
 }

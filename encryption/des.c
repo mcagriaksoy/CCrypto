@@ -64,7 +64,7 @@ ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vect
     if (key == NULL || data == NULL || encrypted == NULL || vector == NULL)
     {
         printf("Error: key, data, vector and encrypted must not be NULL\n");
-        return;
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     EVP_CIPHER_CTX *ctx = NULL;
@@ -90,7 +90,7 @@ ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vect
     if(1 != EVP_EncryptUpdate(ctx, encrypted, &len1, data, strlen(data)))
     {
         EVP_CIPHER_CTX_free(ctx);
-        return;
+        return CCRYPTO_ERROR_OPENSSL;
     }  
 
     /* Finalise the encryption. Normally ciphertext bytes may be written at

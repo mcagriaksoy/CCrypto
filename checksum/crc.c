@@ -13,12 +13,12 @@
 #define CRC16_POLYNOMIAL 0x8005
 #define CRC32_POLYNOMIAL 0x04C11DB7
 
-void str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc_value, size_t *crc_value_size)
+ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc_value, size_t *crc_value_size)
 {
     if (str == NULL || str_size == 0 || crc_value == NULL || crc_value_size == NULL)
     {
-        printf("Error: Invalid input.\n");
-        return;
+        printf("Error: str, str_size, crc_value and crc_value_size must not be NULL\n");
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     uint8_t crc_size;
@@ -39,7 +39,7 @@ void str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc
             break;
         default:
             printf("Error: Invalid crc type.\n");
-            return;
+            return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     uint32_t crc = 0;
@@ -61,4 +61,6 @@ void str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc
 
     memcpy(crc_value, &crc, crc_size/CRC8);
     *crc_value_size = crc_size/CRC8;
+
+    return CCRYPTO_SUCCESS;
 }

@@ -7,25 +7,46 @@
 #include <string.h>
 #include <openssl/evp.h>
 
-void str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size)
+ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size)
 {
+    if (str == NULL || md5_value == NULL || md5_value_size == NULL)
+    {
+        printf("Error: str, md5_value and md5_value_size must not be NULL\n");
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
+    }
+
     EVP_MD_CTX *mdctx;
     unsigned char *md5_digest;
     unsigned int md5_digest_len = EVP_MD_size(EVP_md5());
     
     // MD5_Init
     mdctx = EVP_MD_CTX_new();
-    EVP_DigestInit_ex(mdctx, EVP_md5(), NULL);
+    if (EVP_DigestInit_ex(mdctx, EVP_md5(), NULL) == 0)
+    {
+        EVP_MD_CTX_free(mdctx);
+        return CCRYPTO_ERROR_OPENSSL;
+    }
 
     // MD5_Update
-    EVP_DigestUpdate(mdctx, str, str_size);
+    if (EVP_DigestUpdate(mdctx, str, str_size) == 0)
+    {
+        EVP_MD_CTX_free(mdctx);
+        return CCRYPTO_ERROR_OPENSSL;
+    }
 
     // MD5_Final
     md5_digest = (unsigned char *)OPENSSL_malloc(md5_digest_len);
-    EVP_DigestFinal_ex(mdctx, md5_digest, &md5_digest_len);
+    if (EVP_DigestFinal_ex(mdctx, md5_digest, &md5_digest_len) == 0)
+    {
+        OPENSSL_free(md5_digest);
+        EVP_MD_CTX_free(mdctx);
+        return CCRYPTO_ERROR_OPENSSL;
+    }
 
     memcpy(md5_value, md5_digest, md5_digest_len);
     *md5_value_size = md5_digest_len;
     OPENSSL_free(md5_digest);
     EVP_MD_CTX_free(mdctx);
+
+    return CCRYPTO_SUCCESS;
 }
