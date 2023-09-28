@@ -1,3 +1,6 @@
+CCrypto is an API that create layer between user and the complex openssl functions. It aims to create user friendly and easy to use functions for cryptography functions.
+
+![Screenshot 2023-09-25 111803](https://github.com/mcagriaksoy/CCrypto/assets/20202577/2640d0d5-5fcd-4722-9de3-0df76f4123c9)
 
 <a href="https://github.com/mcagriaksoy/CCrypto" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=mcagriaksoy&message=CCrypto&color=blue&logo=github" alt="mcagriaksoy - CCrypto"></a>
 <a href="https://github.com/mcagriaksoy/CCrypto/releases/"><img src="https://img.shields.io/github/tag/mcagriaksoy/CCrypto?include_prereleases=&sort=semver&color=blue" alt="GitHub tag"></a>
@@ -11,7 +14,6 @@
 <a href="https://github.com/mcagriaksoy/CCrypto"><img src="https://img.shields.io/github/forks/mcagriaksoy/CCrypto?style=social" alt="forks - CCrypto"></a>
 
 ## Description
-C Crypto API that create layer between user and the complex openssl functions. My API aims to create user friendly functions for some crypto functions.
 
 ## Modules
 ### Checksum
