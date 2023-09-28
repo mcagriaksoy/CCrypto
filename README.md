@@ -61,6 +61,11 @@ Afterwards you need to type only:
 
 ` make `
 
+Under /test folder when you trigger the make, you will see the object named `run_all_tests`
+
+`./run_all_tests` with this command you trigger the all tests.
+
+
 </div>
 <h2>Documentation</h2>
 <div align="center">
@@ -69,9 +74,3 @@ Afterwards you need to type only:
 </div>
 <h2>License</h2>
 Released under <a href="/LICENSE">MIT</a> by <a href="https://github.com/mcagriaksoy">@mcagriaksoy</a>.
-
-Under /test folder when you trigger the make, you will see the object named `run_all_tests`
-
-`./run_all_tests` with this command you trigger the all tests.
-
-
