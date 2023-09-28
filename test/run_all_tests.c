@@ -106,7 +106,7 @@ void test_blowfish_encrypt(void) {
 
     uint8_t encrypted[128];
     size_t data_length = strlen(input_text);
-    CU_ASSERT_EQUAL(ccrypto_blowfish_encrypt(key, sizeof(key), input_text, encrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(ccrypto_blowfish_encrypt(key, sizeof(key), input_text, sizeof(input_text), encrypted), CCRYPTO_SUCCESS);
     CU_ASSERT_NOT_EQUAL(memcmp(input_text, encrypted, data_length), 0);
 
     for (size_t i = 0; i < sizeof(input_text) - 1; i++) {
