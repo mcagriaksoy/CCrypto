@@ -47,8 +47,8 @@ ccrypto api has encryption support. It supports:
 4- Blowfish
 
 ## Dependencies
-[![dependency - openssl v3.0](https://img.shields.io/badge/dependency-openssl_v3.0-blue?logo=openssl.js&logoColor=white)](https://www.openssl.org/source/)
-[![dependency - CUnit](https://img.shields.io/badge/dependency-CUnit-blue?logo=openssl.js&logoColor=white)](https://cunit.sourceforge.net/)
+[![OpenSSL - >= 3.0](https://img.shields.io/badge/OpenSSL->=_3.0-2ea44f)](https://www.openssl.org/source/)
+[![CUnit - >= 2.0](https://img.shields.io/badge/CUnit->=_2.0-2ea44f)](https://cunit.sourceforge.net)
 
 ## How to use
 As mentioned above, the Ccrypto API uses openssl base. So you need openssl installed in your system.
