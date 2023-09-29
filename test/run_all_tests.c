@@ -109,7 +109,7 @@ void test_des_encrypt(void) {
     }
 }
 
-void test_blowfish_encrypt(void) {
+void test_all_blowfish(void) {
     const uint8_t input_text[] = {0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10}; // It supports only 8bytes of data!
     
     const uint8_t key[56] = {
@@ -130,6 +130,14 @@ void test_blowfish_encrypt(void) {
 
     for (size_t i = 0; i < sizeof(input_text) - 1; i++) {
         CU_ASSERT_EQUAL((int)encrypted[i], (int)real_data_blowfish[i]);
+    }
+
+    uint8_t decrypted[32];
+    CU_ASSERT_EQUAL(ccrypto_blowfish_decrypt(key, sizeof(key), encrypted, sizeof(encrypted), decrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_NOT_EQUAL(memcmp(input_text, decrypted, data_length), 0);
+
+    for (size_t i = 0; i < sizeof(input_text) - 1; i++) {
+        CU_ASSERT_EQUAL((int)decrypted[i], (int)input_text[i]);
     }
 }
 
@@ -213,11 +221,10 @@ int main() {
     // encryption - decryption tests
     CU_add_test(suite, "test_all_with_aes_ecb", test_all_with_aes_ecb);
     CU_add_test(suite, "test_all_with_aes_ccb", test_all_with_aes_ccb);
+    CU_add_test(suite, "test_all_blowfish", test_all_blowfish);
 
-     
     CU_add_test(suite, "test_encrypt_with_rsa", test_encrypt_with_rsa);
     CU_add_test(suite, "test_des_encrypt", test_des_encrypt);
-    CU_add_test(suite, "test_blowfish_encrypt", test_blowfish_encrypt);
     CU_add_test(suite, "test_encrypt_ecc", test_encrypt_ecc);
 
     // Run all tests

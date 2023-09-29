@@ -10,6 +10,7 @@ SRCS = run_all_tests.c \
 	   ../encryption/ecc.c \
 	   ../decryption/aes.c \
 	   ../decryption/des.c \
+	   ../decryption/blowfish.c \
 	   ../checksum/sha3.c \
 	   ../checksum/md5.c \
 	   ../checksum/crc.c \
