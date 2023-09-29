@@ -16,16 +16,21 @@
 #include "../encryption/des.h"
 #include "../encryption/blowfish.h"
 
+// decryption
+#include "../decryption/aes.h"
+#include "../decryption/des.h"
+#include "../decryption/blowfish.h"
+
 // common
 #include "../common/types.h"
 
 unsigned char plaintext[] = "Hello word!";
 
-void test_encrypt_with_aes_ecb(void) {
+void test_all_with_aes_ecb(void) {
     int plaintext_len = strlen(plaintext);
     ccrypto_aes_size_t aes_size = AES_256;
     unsigned char key[] = "01234567890123456789012345678901";
-    unsigned char ciphertext[128];
+    unsigned char ciphertext[32];
     size_t ciphertext_len;
 
     CU_ASSERT_EQUAL(encrypt_with_aes_ecb(plaintext, plaintext_len, aes_size, key, ciphertext, &ciphertext_len), CCRYPTO_SUCCESS);
@@ -35,14 +40,21 @@ void test_encrypt_with_aes_ecb(void) {
     for (size_t i = 0; i < sizeof(real_data); i++) {
         CU_ASSERT_EQUAL(ciphertext[i], real_data[i]);
     }
+
+    unsigned char gathered_plaintext[32];
+    size_t gathered_plaintext_len;
+    CU_ASSERT_EQUAL(decrypt_with_aes_ecb(ciphertext, ciphertext_len, aes_size, key, gathered_plaintext, &gathered_plaintext_len), CCRYPTO_SUCCESS);
+    for (size_t i = 0; i < gathered_plaintext_len; i++) {
+        CU_ASSERT_EQUAL(plaintext[i], gathered_plaintext[i]);
+    }
 }
 
-void test_encrypt_with_aes_cbc(void) {
+void test_all_with_aes_ccb(void) {
     int plaintext_len = strlen(plaintext);
     ccrypto_aes_size_t aes_size = AES_256;
     unsigned char key[] = "01234567890123456789012345678901";
     unsigned char iv[] = "0123456789012345";
-    unsigned char ciphertext[128];
+    unsigned char ciphertext[32];
     size_t ciphertext_len;
 
     encrypt_with_aes_cbc(plaintext, plaintext_len, aes_size, key, iv, ciphertext, &ciphertext_len);
@@ -50,6 +62,13 @@ void test_encrypt_with_aes_cbc(void) {
     CU_ASSERT_EQUAL(ciphertext_len, 16);
     for (size_t i = 0; i < sizeof(real_data); i++) {
         CU_ASSERT_EQUAL(ciphertext[i], real_data[i]);
+    }
+
+    unsigned char gathered_plaintext[32];
+    size_t gathered_plaintext_len;
+    CU_ASSERT_EQUAL(decrypt_with_aes_cbc(ciphertext, ciphertext_len, aes_size, key, iv, gathered_plaintext, &gathered_plaintext_len), CCRYPTO_SUCCESS);
+    for (size_t i = 0; i < gathered_plaintext_len; i++) {
+        CU_ASSERT_EQUAL(plaintext[i], gathered_plaintext[i]);
     }
 }
 
@@ -104,7 +123,7 @@ void test_blowfish_encrypt(void) {
 
     const uint8_t real_data_blowfish[8] = {0xc0, 0x45, 0x04, 0x01, 0x2e, 0x4e, 0x1f, 0x53};
 
-    uint8_t encrypted[128];
+    uint8_t encrypted[32];
     size_t data_length = strlen(input_text);
     CU_ASSERT_EQUAL(ccrypto_blowfish_encrypt(key, sizeof(key), input_text, sizeof(input_text), encrypted), CCRYPTO_SUCCESS);
     CU_ASSERT_NOT_EQUAL(memcmp(input_text, encrypted, data_length), 0);
@@ -112,6 +131,29 @@ void test_blowfish_encrypt(void) {
     for (size_t i = 0; i < sizeof(input_text) - 1; i++) {
         CU_ASSERT_EQUAL((int)encrypted[i], (int)real_data_blowfish[i]);
     }
+}
+
+void test_encrypt_ecc(void) {
+    const uint8_t public_key[] = {0x04, 0x5d, 0x5e, 0x7a, 0x1c, 0x9d, 0x2c, 0x2d, 0x9e, 0x5d, 0x0e, 0x3a, 0x4e, 0x9d, 0x3c, 0x3d, 0x9e, 0x5d, 0x0e, 0x3a, 0x4e, 0x9d, 0x3c, 0x3d, 0x9e, 0x5d, 0x0e, 0x3a, 0x4e, 0x9d, 0x3c, 0x3d, 0x9e, 0x5d, 0x0e, 0x3a, 0x4e, 0x9d, 0x3c, 0x3d, 0x9e, 0x5d, 0x0e, 0x3a, 0x4e, 0x9d, 0x3c, 0x3d, 0x9e, 0x5d, 0x0e, 0x3a, 0x4e, 0x9d, 0x3c, 0x3d};
+    const uint8_t data[] = "Hello, world!";
+    const size_t data_length = strlen((const char *)data);
+    uint8_t encrypted_data[1024];
+    size_t encrypted_data_length;
+
+    // Encrypt the data
+    ccrypto_error_type result = ccrypto_ecc_encrypt(public_key, data, data_length, encrypted_data, &encrypted_data_length);
+    if (result != CCRYPTO_SUCCESS) {
+        printf("Encryption failed with error code %d\n", result);
+        return 1;
+    }
+
+    // Print the encrypted data
+    printf("Encrypted data: ");
+    for (size_t i = 0; i < encrypted_data_length; i++) {
+        printf("%02x", encrypted_data[i]);
+    }
+    printf("\n");
+
 }
 
 void test_str_to_sha3(void) {
@@ -142,7 +184,6 @@ void test_str_to_crc(void) {
     CU_ASSERT_EQUAL(crc_value[0], 0x35);
 
     // TODO CRC16 and CRC32 not working!
-
 }
 
 void test_str_to_md5(void) {
@@ -159,7 +200,7 @@ void test_str_to_md5(void) {
     }
 }
 
-// Test
+// Test main
 int main() {
     CU_initialize_registry();
     CU_pSuite suite = CU_add_suite("All tests", NULL, NULL);
@@ -169,13 +210,18 @@ int main() {
     CU_add_test(suite, "test_str_to_crc", test_str_to_crc);
     CU_add_test(suite, "test_str_to_sha3", test_str_to_sha3);
 
-    // encryption tests
-    CU_add_test(suite, "test_encrypt_with_aes_ecb", test_encrypt_with_aes_ecb);
+    // encryption - decryption tests
+    CU_add_test(suite, "test_all_with_aes_ecb", test_all_with_aes_ecb);
+    CU_add_test(suite, "test_all_with_aes_ccb", test_all_with_aes_ccb);
+
+     
     CU_add_test(suite, "test_encrypt_with_rsa", test_encrypt_with_rsa);
     CU_add_test(suite, "test_des_encrypt", test_des_encrypt);
     CU_add_test(suite, "test_blowfish_encrypt", test_blowfish_encrypt);
+    CU_add_test(suite, "test_encrypt_ecc", test_encrypt_ecc);
+
+    // Run all tests
     CU_basic_run_tests();
     CU_cleanup_registry();
-
     return 0;
 }

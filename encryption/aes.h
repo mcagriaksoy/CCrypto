@@ -8,12 +8,6 @@
 
 #include "../common/types.h"
 
-typedef enum {
-    AES_128 = 128,
-    AES_192 = 192,
-    AES_256 = 256
-} ccrypto_aes_size_t;
-
 /**
  * Encrypts the given plaintext using AES in CBC mode.
  *
