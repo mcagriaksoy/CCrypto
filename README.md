@@ -3,11 +3,12 @@ CCrypto is an API that create layer between user and the complex openssl functio
 ![Screenshot 2023-09-25 111803](https://github.com/mcagriaksoy/CCrypto/assets/20202577/2640d0d5-5fcd-4722-9de3-0df76f4123c9)
 
 <a href="https://github.com/mcagriaksoy/CCrypto" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=mcagriaksoy&message=CCrypto&color=blue&logo=github" alt="mcagriaksoy - CCrypto"></a>
+[![Pipeline - Passing](https://img.shields.io/badge/Pipeline-Passing-2ea44f)](https://)
 <a href="https://github.com/mcagriaksoy/CCrypto/releases/"><img src="https://img.shields.io/github/tag/mcagriaksoy/CCrypto?include_prereleases=&sort=semver&color=blue" alt="GitHub tag"></a>
 <a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue" alt="License"></a>
 <a href="https://github.com/mcagriaksoy/CCrypto/issues"><img src="https://img.shields.io/github/issues/mcagriaksoy/CCrypto" alt="issues - CCrypto"></a>
-[![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
 [![Hosted with GH Pages](https://img.shields.io/badge/Hosted_with-GitHub_Pages-blue?logo=github&logoColor=white)](https://pages.github.com/ "Go to GitHub Pages homepage")
+[![OS - Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux&logoColor=white)](https://www.linux.org/ "Go to Linux homepage")
 [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://www.microsoft.com/ "Go to Microsoft homepage")
 
 <a href="https://github.com/mcagriaksoy/CCrypto"><img src="https://img.shields.io/github/stars/mcagriaksoy/CCrypto?style=social" alt="stars - CCrypto"></a>
@@ -19,24 +20,35 @@ CCrypto is an API that create layer between user and the complex openssl functio
 ### Checksum
 ccrypto api has checksum support. It supports:
 
-1- CRC8, CRC16, CRC32
+1- CRCs
+  - CRC8
+  - CRC16
+  - CRC32
 
-2- md5
+2- MD5
 
-3- SHA3 with 224, 256, 384, 512 bit support
+3- SHA3
+  - 224 bit
+  - 256 bit
+  - 384 bit
+  - 512 bit
 
 ### Encryption
 ccrypto api has encryption support. It supports:
 
-1- AES with CBC and ECB mode.
+1- AES
+  - CBC mode
+  - ECB mode
 
 2- RSA
 
 3- (Triple) 3DES
 
+4- Blowfish
+
 ## Dependencies
-- OpenSSL
-- CUnit
+[![dependency - openssl v3.0](https://img.shields.io/badge/dependency-openssl_v3.0-blue?logo=openssl.js&logoColor=white)](https://www.openssl.org/source/)
+[![dependency - CUnit](https://img.shields.io/badge/dependency-CUnit-blue?logo=openssl.js&logoColor=white)](https://cunit.sourceforge.net/)
 
 ## How to use
 As mentioned above, the Ccrypto API uses openssl base. So you need openssl installed in your system.
