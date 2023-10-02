@@ -3,4 +3,3 @@
 
 #include "twofish.h"
 #include <string.h>
-

@@ -4,9 +4,9 @@
 #include "crc.h"
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 // CRC polynomials
 #define CRC8_POLYNOMIAL 0x07
@@ -23,23 +23,23 @@ ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type
 
     uint8_t crc_size;
     uint32_t crc_polynomial;
-    switch(crc_type)
+    switch (crc_type)
     {
-        case CRC8:
-            crc_size = CRC8;
-            crc_polynomial = CRC8_POLYNOMIAL;
-            break;
-        case CRC16:
-            crc_size = CRC16;
-            crc_polynomial = CRC16_POLYNOMIAL;
-            break;
-        case CRC32:
-            crc_size = CRC32;
-            crc_polynomial = CRC32_POLYNOMIAL;
-            break;
-        default:
-            printf("Error: Invalid crc type.\n");
-            return CCRYPTO_ERROR_INVALID_ARGUMENT;
+    case CRC8:
+        crc_size = CRC8;
+        crc_polynomial = CRC8_POLYNOMIAL;
+        break;
+    case CRC16:
+        crc_size = CRC16;
+        crc_polynomial = CRC16_POLYNOMIAL;
+        break;
+    case CRC32:
+        crc_size = CRC32;
+        crc_polynomial = CRC32_POLYNOMIAL;
+        break;
+    default:
+        printf("Error: Invalid crc type.\n");
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     uint32_t crc = 0;
@@ -59,8 +59,8 @@ ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type
         }
     }
 
-    memcpy(crc_value, &crc, crc_size/CRC8);
-    *crc_value_size = crc_size/CRC8;
+    memcpy(crc_value, &crc, crc_size / CRC8);
+    *crc_value_size = crc_size / CRC8;
 
     return CCRYPTO_SUCCESS;
 }

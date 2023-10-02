@@ -6,9 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <openssl/crypto.h>
 #include <openssl/evp.h>
 #include <openssl/sha.h>
-#include <openssl/crypto.h>
 
 ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_type, uint8_t *sha3_value, size_t *sha3_value_size)
 {
@@ -19,7 +19,7 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
     }
 
     uint32_t sha_length;
-    EVP_MD* algorithm = NULL;
+    EVP_MD *algorithm = NULL;
     switch (algo_type)
     {
     case SHA3_224:
@@ -34,7 +34,7 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
         sha_length = SHA384_DIGEST_LENGTH;
         algorithm = EVP_sha3_384();
         break;
-    case SHA3_512: 
+    case SHA3_512:
         sha_length = SHA512_DIGEST_LENGTH;
         algorithm = EVP_sha3_512();
         break;
@@ -45,8 +45,8 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
     }
 
     // SHA3_Init
-    uint8_t* sha_value = (uint8_t*)(OPENSSL_malloc(sha_length));
-    EVP_MD_CTX* context = EVP_MD_CTX_new();
+    uint8_t *sha_value = (uint8_t *)(OPENSSL_malloc(sha_length));
+    EVP_MD_CTX *context = EVP_MD_CTX_new();
     if (context == NULL)
     {
         printf("Error: EVP_MD_CTX_new failed.\n");
@@ -82,6 +82,7 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
     }
 
     EVP_MD_CTX_destroy(context);
+
     memcpy(sha3_value, sha_value, sha_length);
     *sha3_value_size = sha_length;
     OPENSSL_free(sha_value);

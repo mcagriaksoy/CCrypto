@@ -27,4 +27,4 @@ ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key, unsigned char *data
  */
 ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned char *data, unsigned char *encrypted);
 
-#endif //CCRYPTO_DES_H
+#endif // CCRYPTO_DES_H

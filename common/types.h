@@ -33,11 +33,18 @@ typedef unsigned int ccrypto_error_type;
 #define CCRYPTO_ERROR_INVALID_ARGUMENT 15
 #define CCRYPTO_ERROR_OPENSSL 16
 
-typedef enum {
+typedef enum
+{
     AES_128 = 128,
     AES_192 = 192,
     AES_256 = 256
 } ccrypto_aes_size_t;
 
-#endif //CCRYPTO_TYPES_H
+typedef enum
+{
+    CRC8 = 8,
+    CRC16 = 16,
+    CRC32 = 32
+} crc_type_t;
 
+#endif // CCRYPTO_TYPES_H

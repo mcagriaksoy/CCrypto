@@ -2,12 +2,14 @@
 // github.com/mcagriaksoy
 
 #include "blowfish.h"
-#include <string.h>
 #include <openssl/blowfish.h>
-#include <stdio.h>
 #include <stddef.h>
+#include <stdio.h>
+#include <string.h>
 
-ccrypto_error_type ccrypto_blowfish_encrypt(const uint8_t *key, size_t key_size, const uint8_t *data, size_t data_size, uint8_t *output)
+ccrypto_error_type ccrypto_blowfish_encrypt(const uint8_t *key, size_t key_size,
+                                            const uint8_t *data, size_t data_size,
+                                            uint8_t *output)
 {
     if (key == NULL || data == NULL || output == NULL)
     {
@@ -31,8 +33,8 @@ ccrypto_error_type ccrypto_blowfish_encrypt(const uint8_t *key, size_t key_size,
     BF_KEY bf_key;
     BF_set_key(&bf_key, (int)key_size, key);
 
-    for(int i=0; i < data_size; i += 8 )
-    {    
+    for (int i = 0; i < data_size; i += 8)
+    {
         // Encrypt the data
         BF_ecb_encrypt(data, output, &bf_key, BF_ENCRYPT);
     }

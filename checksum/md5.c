@@ -3,9 +3,9 @@
 
 #include "md5.h"
 
+#include <openssl/evp.h>
 #include <stdlib.h>
 #include <string.h>
-#include <openssl/evp.h>
 
 ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size)
 {
@@ -18,7 +18,7 @@ ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value,
     EVP_MD_CTX *mdctx;
     unsigned char *md5_digest;
     unsigned int md5_digest_len = EVP_MD_size(EVP_md5());
-    
+
     // MD5_Init
     mdctx = EVP_MD_CTX_new();
     if (EVP_DigestInit_ex(mdctx, EVP_md5(), NULL) == 0)

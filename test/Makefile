@@ -11,6 +11,7 @@ SRCS = run_all_tests.c \
 	   ../decryption/aes.c \
 	   ../decryption/des.c \
 	   ../decryption/blowfish.c \
+	   ../decryption/ecc.c \
 	   ../checksum/sha3.c \
 	   ../checksum/md5.c \
 	   ../checksum/crc.c \

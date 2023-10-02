@@ -17,5 +17,4 @@
  */
 ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char *public_key);
 
-#endif //CCRYPTO_RSA_H
-
+#endif // CCRYPTO_RSA_H

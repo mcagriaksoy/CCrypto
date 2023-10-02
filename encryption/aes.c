@@ -2,11 +2,11 @@
 // github.com/mcagriaksoy
 
 #include "aes.h"
-#include <string.h>
 #include <openssl/evp.h>
+#include <string.h>
 
 ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
-            unsigned char *ciphertext, size_t *ciphertext_len)
+                                        unsigned char *ciphertext, size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || iv == NULL || ciphertext == NULL || ciphertext_len == NULL)
     {
@@ -16,54 +16,54 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_
 
     EVP_CIPHER_CTX *ctx = NULL;
     /* Create and initialise the context */
-    if(!(ctx = EVP_CIPHER_CTX_new()))
+    if (!(ctx = EVP_CIPHER_CTX_new()))
     {
         printf("Error: EVP_CIPHER_CTX_new failed\n");
         return CCRYPTO_ERROR_OPENSSL;
     }
 
     EVP_CIPHER *cipher_type = NULL;
-    switch(aes_size)
+    switch (aes_size)
     {
-        case AES_128:
-            cipher_type = EVP_aes_128_cbc();
-            break; 
-        case AES_192:
-            cipher_type = EVP_aes_192_cbc();
-            break;
-        case AES_256:
-            cipher_type = EVP_aes_256_cbc();
-            break;
-        default:
-            printf("Error: Invalid aes size.\n");
-            free(cipher_type);
-            return CCRYPTO_ERROR_INVALID_ARGUMENT;
+    case AES_128:
+        cipher_type = EVP_aes_128_cbc();
+        break;
+    case AES_192:
+        cipher_type = EVP_aes_192_cbc();
+        break;
+    case AES_256:
+        cipher_type = EVP_aes_256_cbc();
+        break;
+    default:
+        printf("Error: Invalid aes size.\n");
+        free(cipher_type);
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     /* Initialise key and IV */
-    if(1 != EVP_EncryptInit_ex(ctx, cipher_type, NULL, key, iv))
+    if (1 != EVP_EncryptInit_ex(ctx, cipher_type, NULL, key, iv))
     {
         printf("Error: EVP_EncryptInit_ex failed\n");
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;
     }
-    
+
     int len1 = 0;
     /* Provide the message to be encrypted, and obtain the encrypted output.
      * EVP_EncryptUpdate can be called multiple times if necessary
      */
-    if(1 != EVP_EncryptUpdate(ctx, ciphertext, &len1, plaintext, plaintext_len))
+    if (1 != EVP_EncryptUpdate(ctx, ciphertext, &len1, plaintext, plaintext_len))
     {
         printf("Error: EVP_EncryptUpdate failed\n");
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;
-    }  
+    }
 
     /* Finalise the encryption. Normally ciphertext bytes may be written at
      * this stage, but this does not occur in GCM mode
      */
     int len2 = 0;
-    if(1 != EVP_EncryptFinal_ex(ctx, ciphertext + len1, &len2))
+    if (1 != EVP_EncryptFinal_ex(ctx, ciphertext + len1, &len2))
     {
         printf("Error: EVP_EncryptFinal_ex failed\n");
         EVP_CIPHER_CTX_free(ctx);
@@ -79,7 +79,7 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_
 }
 
 ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
-            unsigned char *ciphertext, size_t *ciphertext_len)
+                                        unsigned char *ciphertext, size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || ciphertext == NULL || ciphertext_len == NULL)
     {
@@ -89,54 +89,54 @@ ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_
 
     EVP_CIPHER_CTX *ctx = NULL;
     /* Create and initialise the context */
-    if(!(ctx = EVP_CIPHER_CTX_new()))
+    if (!(ctx = EVP_CIPHER_CTX_new()))
     {
         printf("Error: EVP_CIPHER_CTX_new failed\n");
         return CCRYPTO_ERROR_OPENSSL;
     }
 
     EVP_CIPHER *cipher_type = NULL;
-    switch(aes_size)
+    switch (aes_size)
     {
-        case AES_128:
-            cipher_type = EVP_aes_128_ecb();
-            break; 
-        case AES_192:
-            cipher_type = EVP_aes_192_ecb();
-            break;
-        case AES_256:
-            cipher_type = EVP_aes_256_ecb();
-            break;
-        default:
-            printf("Error: Invalid aes size.\n");
-            free(cipher_type);
-            return CCRYPTO_ERROR_INVALID_ARGUMENT;
+    case AES_128:
+        cipher_type = EVP_aes_128_ecb();
+        break;
+    case AES_192:
+        cipher_type = EVP_aes_192_ecb();
+        break;
+    case AES_256:
+        cipher_type = EVP_aes_256_ecb();
+        break;
+    default:
+        printf("Error: Invalid aes size.\n");
+        free(cipher_type);
+        return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     /* Initialise key*/
-    if(1 != EVP_EncryptInit_ex(ctx, cipher_type, NULL, key, NULL))
+    if (1 != EVP_EncryptInit_ex(ctx, cipher_type, NULL, key, NULL))
     {
         printf("Error: EVP_EncryptInit_ex failed\n");
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;
     }
-    
+
     int len1 = 0;
     /* Provide the message to be encrypted, and obtain the encrypted output.
      * EVP_EncryptUpdate can be called multiple times if necessary
      */
-    if(1 != EVP_EncryptUpdate(ctx, ciphertext, &len1, plaintext, plaintext_len))
+    if (1 != EVP_EncryptUpdate(ctx, ciphertext, &len1, plaintext, plaintext_len))
     {
         printf("Error: EVP_EncryptUpdate failed\n");
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;
-    }  
+    }
 
     /* Finalise the encryption. Normally ciphertext bytes may be written at
      * this stage, but this does not occur in GCM mode
      */
     int len2 = 0;
-    if(1 != EVP_EncryptFinal_ex(ctx, ciphertext + len1, &len2))
+    if (1 != EVP_EncryptFinal_ex(ctx, ciphertext + len1, &len2))
     {
         printf("Error: EVP_EncryptFinal_ex failed\n");
         EVP_CIPHER_CTX_free(ctx);

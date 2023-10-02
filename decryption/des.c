@@ -96,7 +96,7 @@ ccrypto_error_type des3_decrypt_with_cbc(
 
     /* Initialise key and IV */
     /* EDE3 represents the triple des implementation */
-    if(1 != EVP_DecryptInit_ex(ctx, EVP_des_ede3_ecb(), NULL, key, iv))
+    if(1 != EVP_DecryptInit_ex(ctx, EVP_des_ede3_cbc(), NULL, key, iv))
     {
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;
