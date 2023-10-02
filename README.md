@@ -33,8 +33,8 @@ ccrypto api has checksum support. It supports:
   - 384 bit
   - 512 bit
 
-### Encryption
-ccrypto api has encryption support. It supports:
+### Encryption / Decryption
+ccrypto api has encryption and decryption support. It supports:
 
 1- AES
   - CBC mode
