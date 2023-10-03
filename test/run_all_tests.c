@@ -222,9 +222,10 @@ void test_str_to_sha3(void)
 
 void test_str_to_crc(void)
 {
+    // TEST CRC8 ALGORITHM
     size_t str_size = strlen(plaintext);
     crc_type_t crc_type = CRC8;
-    uint8_t crc_value[4];
+    uint8_t crc_value[8];
     size_t crc_value_size;
 
     CU_ASSERT_EQUAL(str_to_crc(plaintext, str_size, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
@@ -232,7 +233,31 @@ void test_str_to_crc(void)
     CU_ASSERT_EQUAL(crc_value_size, 1);
     CU_ASSERT_EQUAL(crc_value[0], 0x35);
 
-    // TODO CRC16 and CRC32 not working!
+    // TEST CRC16/AUG-CCITT ALGORITHM
+    crc_type = CRC16;
+
+    CU_ASSERT_EQUAL(str_to_crc(plaintext, str_size, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
+
+    CU_ASSERT_EQUAL(crc_value_size, 2);
+    uint8_t real_data[] = {0x59, 0xd4};
+
+    for (size_t i = 0; i < crc_value_size; i++)
+    {
+        CU_ASSERT_EQUAL(crc_value[i], real_data[i]);
+    }
+
+    // TEST CRC-32/JAMCRC ALGORITHM
+    crc_type = CRC32;
+
+    CU_ASSERT_EQUAL(str_to_crc(plaintext, str_size, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
+
+    CU_ASSERT_EQUAL(crc_value_size, 4);
+    uint8_t real_data2[] = {0xba, 0x5e, 0x46, 0xba};
+
+    for (size_t i = 0; i < crc_value_size; i++)
+    {
+        CU_ASSERT_EQUAL(crc_value[i], real_data2[i]);
+    }
 }
 
 void test_str_to_md5(void)
