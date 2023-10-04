@@ -81,7 +81,7 @@ Under /test folder when you trigger the make, you will see the object named `run
 </div>
 <h2>Documentation</h2>
 <div align="center">
-<a href="/docs/" title="Go to project documentation"><img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation"></a>
+<a href="/docs/index.html" title="Go to project documentation"><img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation"></a>
 
 </div>
 <h2>License</h2>
