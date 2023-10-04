@@ -22,6 +22,12 @@
  */
 void crc_8_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
 {
+    if (str == NULL || str_size == 0 || crc == NULL)
+    {
+        printf("Error: str, str_size and crc must not be NULL\n");
+        return;
+    }
+
     const uint8_t polynomial = 0x07;
 
     for (size_t i = 0; i < str_size; i++)
@@ -100,7 +106,8 @@ void crc_32_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
     ccrypto_memcpy(crc, &crc_temp, 4);
 }
 
-ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc_value, size_t *crc_value_size)
+ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type,
+                              uint8_t *crc_value, size_t *crc_value_size)
 {
     if (str == NULL || str_size == 0 || crc_value == NULL || crc_value_size == NULL)
     {

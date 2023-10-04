@@ -82,7 +82,9 @@ ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char
     }
 
     // Encrypt the message
-    if (EVP_PKEY_encrypt(ctx, (unsigned char *)encrypted_message, &encrypted_len, (unsigned char *)message, message_len) <= 0)
+    if (EVP_PKEY_encrypt(ctx, (unsigned char *)encrypted_message,
+                         &encrypted_len, (unsigned char *)message,
+                         message_len) <= 0)
     {
         fprintf(stderr, "Error encrypting message\n");
         ERR_print_errors_fp(stderr);
