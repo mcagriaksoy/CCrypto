@@ -36,7 +36,8 @@ void test_all_with_aes_ecb(void)
 
     CU_ASSERT_EQUAL(encrypt_with_aes_ecb(plaintext, plaintext_len, aes_size, key, ciphertext, &ciphertext_len), CCRYPTO_SUCCESS);
 
-    uint8_t real_data[] = {0xce, 0xd8, 0x9c, 0x5e, 0x10, 0x96, 0xec, 0xd1, 0xd6, 0x79, 0x7f, 0x08, 0x35, 0xe9, 0x5d, 0x61};
+    uint8_t real_data[] = {0xce, 0xd8, 0x9c, 0x5e, 0x10, 0x96, 0xec, 0xd1,
+                           0xd6, 0x79, 0x7f, 0x08, 0x35, 0xe9, 0x5d, 0x61};
     CU_ASSERT_EQUAL(ciphertext_len, 16);
     for (size_t i = 0; i < sizeof(real_data); i++)
     {
@@ -61,7 +62,8 @@ void test_all_with_aes_ccb(void)
     size_t ciphertext_len;
 
     encrypt_with_aes_cbc(plaintext, plaintext_len, aes_size, key, iv, ciphertext, &ciphertext_len);
-    uint8_t real_data[] = {0x19, 0xe3, 0xa6, 0xeb, 0x39, 0xfe, 0xe2, 0x0e, 0x92, 0xf1, 0x00, 0xf6, 0xf1, 0x92, 0x56, 0xe3};
+    uint8_t real_data[] = {0x19, 0xe3, 0xa6, 0xeb, 0x39, 0xfe, 0xe2, 0x0e,
+                           0x92, 0xf1, 0x00, 0xf6, 0xf1, 0x92, 0x56, 0xe3};
     CU_ASSERT_EQUAL(ciphertext_len, 16);
     for (size_t i = 0; i < sizeof(real_data); i++)
     {
@@ -96,7 +98,8 @@ void test_all_3des(void)
     unsigned char key[] = "012345678910111213140123456789";
     unsigned char encrypted[16];
 
-    unsigned char real_data_ecb[] = {0xDC, 0xE5, 0x11, 0x62, 0xEA, 0x09, 0x86, 0xD7, 0xC4, 0xD7, 0x03, 0x40, 0x62, 0x12, 0x08, 0x89};
+    unsigned char real_data_ecb[] = {0xDC, 0xE5, 0x11, 0x62, 0xEA, 0x09, 0x86, 0xD7,
+                                     0xC4, 0xD7, 0x03, 0x40, 0x62, 0x12, 0x08, 0x89};
     CU_ASSERT_EQUAL(des3_encrypt_with_ecb(key, plaintext, strlen(plaintext), encrypted), CCRYPTO_SUCCESS);
 
     CU_ASSERT_NOT_EQUAL(memcmp(plaintext, encrypted, 8), 0);
@@ -108,7 +111,8 @@ void test_all_3des(void)
     // Decrypt the data
     unsigned char decrypted[16];
     size_t decrypted_len;
-    CU_ASSERT_EQUAL(des3_decrypt_with_ecb(key, encrypted, sizeof(encrypted), decrypted, &decrypted_len), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(des3_decrypt_with_ecb(key, encrypted, sizeof(encrypted), decrypted, &decrypted_len),
+                    CCRYPTO_SUCCESS);
 
     for (size_t i = 0; i < decrypted_len; i++)
     {
@@ -118,16 +122,19 @@ void test_all_3des(void)
     // cbc TEST!
     // Initialization vector.
     unsigned char iv[] = "01234567";
-    CU_ASSERT_EQUAL(des3_encrypt_with_cbc(key, iv, plaintext, strlen(plaintext), encrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(des3_encrypt_with_cbc(key, iv, plaintext, strlen(plaintext), encrypted),
+                    CCRYPTO_SUCCESS);
 
-    unsigned char real_data_cbc[] = {0x12, 0xAB, 0x02, 0x5B, 0xCC, 0xC3, 0xD8, 0x68, 0x9A, 0xFE, 0xDC, 0xC6, 0xCE, 0xF1, 0xAA, 0xC2};
+    unsigned char real_data_cbc[] = {0x12, 0xAB, 0x02, 0x5B, 0xCC, 0xC3, 0xD8, 0x68,
+                                     0x9A, 0xFE, 0xDC, 0xC6, 0xCE, 0xF1, 0xAA, 0xC2};
     for (size_t i = 0; i < sizeof(real_data_cbc) - 1; i++)
     {
         CU_ASSERT_EQUAL((int)encrypted[i], (int)real_data_cbc[i]);
     }
 
     // Decrypt the data
-    CU_ASSERT_EQUAL(des3_decrypt_with_cbc(key, iv, encrypted, sizeof(encrypted), decrypted, &decrypted_len), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(des3_decrypt_with_cbc(key, iv, encrypted, sizeof(encrypted), decrypted, &decrypted_len),
+                    CCRYPTO_SUCCESS);
     for (size_t i = 0; i < decrypted_len; i++)
     {
         CU_ASSERT_EQUAL((int)decrypted[i], (int)plaintext[i]);
@@ -150,7 +157,8 @@ void test_all_blowfish(void)
 
     uint8_t encrypted[32];
     size_t data_length = strlen(input_text);
-    CU_ASSERT_EQUAL(ccrypto_blowfish_encrypt(key, sizeof(key), input_text, sizeof(input_text), encrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(ccrypto_blowfish_encrypt(key, sizeof(key), input_text, sizeof(input_text), encrypted),
+                    CCRYPTO_SUCCESS);
     CU_ASSERT_NOT_EQUAL(memcmp(input_text, encrypted, data_length), 0);
 
     for (size_t i = 0; i < sizeof(input_text) - 1; i++)
@@ -159,7 +167,8 @@ void test_all_blowfish(void)
     }
 
     uint8_t decrypted[32];
-    CU_ASSERT_EQUAL(ccrypto_blowfish_decrypt(key, sizeof(key), encrypted, sizeof(encrypted), decrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(ccrypto_blowfish_decrypt(key, sizeof(key), encrypted, sizeof(encrypted), decrypted),
+                    CCRYPTO_SUCCESS);
     CU_ASSERT_NOT_EQUAL(memcmp(input_text, decrypted, data_length), 0);
 
     for (size_t i = 0; i < sizeof(input_text) - 1; i++)
@@ -171,18 +180,19 @@ void test_all_blowfish(void)
 void test_all_ecc(void)
 {
     const uint8_t public_key[] = {0x04, 0xa0, 0x15, 0x32, 0xa3, 0xc0, 0x90, 0x00, 0x53, 0xde, 0x60, 0xfb,
-                                  0xef, 0xef, 0xcc, 0xa5, 0x87, 0x93, 0x30, 0x15, 0x98, 0xd3, 0x08, 0xb4, 0x1e, 0x6f, 0x4e, 0x36, 0x4e,
-                                  0x38, 0x8c, 0x27, 0x11, 0xbe, 0xf4, 0x32, 0xc5, 0x99, 0x14, 0x8c, 0x94, 0x14, 0x3d, 0x4f, 0xf4, 0x6c,
-                                  0x2c, 0xb7, 0x3e, 0x3e, 0x6a, 0x41, 0xd7, 0xee, 0xf2, 0x3c, 0x04, 0x7e, 0xa1, 0x1e, 0x60, 0x66, 0x7d,
-                                  0xe4, 0x25};
+                                  0xef, 0xef, 0xcc, 0xa5, 0x87, 0x93, 0x30, 0x15, 0x98, 0xd3, 0x08, 0xb4,
+                                  0x1e, 0x6f, 0x4e, 0x36, 0x4e, 0x38, 0x8c, 0x27, 0x11, 0xbe, 0xf4, 0x32,
+                                  0xc5, 0x99, 0x14, 0x8c, 0x94, 0x14, 0x3d, 0x4f, 0xf4, 0x6c, 0x2c, 0xb7,
+                                  0x3e, 0x3e, 0x6a, 0x41, 0xd7, 0xee, 0xf2, 0x3c, 0x04, 0x7e, 0xa1, 0x1e,
+                                  0x60, 0x66, 0x7d, 0xe4, 0x25};
 
     const uint8_t private_key[] = {0x11, 0xb5, 0x73, 0x7c, 0xf9, 0xd9, 0x3f, 0x17, 0xc0, 0xcb, 0x1a, 0x84,
-                                   0x65, 0x5d, 0x39, 0x95, 0xa0, 0x28, 0x24, 0x09, 0x7e, 0xff, 0xa5, 0xed, 0xd8, 0xee, 0x26, 0x38, 0x1e,
-                                   0xb5, 0xd6, 0xc3};
+                                   0x65, 0x5d, 0x39, 0x95, 0xa0, 0x28, 0x24, 0x09, 0x7e, 0xff, 0xa5, 0xed,
+                                   0xd8, 0xee, 0x26, 0x38, 0x1e, 0xb5, 0xd6, 0xc3};
 
-    const size_t data_length = strlen((const char *)plaintext);
-    uint8_t encrypted_data[1024];
-    size_t encrypted_data_length;
+    // const size_t data_length = strlen((const char *)plaintext);
+    // uint8_t encrypted_data[1024];
+    // size_t encrypted_data_length;
 
     // TODO fix the tests!
     // Encrypt the data
@@ -213,7 +223,8 @@ void test_str_to_sha3(void)
 
     CU_ASSERT_EQUAL(sha3_value_size, 32);
     uint8_t real_data[] = {0x26, 0xa0, 0x3d, 0x18, 0x5f, 0x96, 0x98, 0x9a, 0xb1, 0xb9, 0xdc, 0xdd, 0x35,
-                           0x54, 0xa5, 0xe8, 0xdf, 0xdd, 0x89, 0x86, 0xf1, 0xcd, 0xaf, 0x00, 0x2c, 0x7b, 0x98, 0xc8, 0x8c, 0x14, 0xf2, 0x4f};
+                           0x54, 0xa5, 0xe8, 0xdf, 0xdd, 0x89, 0x86, 0xf1, 0xcd, 0xaf, 0x00, 0x2c, 0x7b,
+                           0x98, 0xc8, 0x8c, 0x14, 0xf2, 0x4f};
     for (size_t i = 0; i < sizeof(real_data) / 2; i++)
     {
         CU_ASSERT_EQUAL(sha3_value[i], real_data[i]);
@@ -269,7 +280,8 @@ void test_str_to_md5(void)
     CU_ASSERT_EQUAL(str_to_md5(plaintext, str_size, md5_value, &md5_value_size), CCRYPTO_SUCCESS);
 
     CU_ASSERT_EQUAL(md5_value_size, 16);
-    uint8_t real_data[] = {0x33, 0x17, 0x36, 0x00, 0x71, 0x3d, 0x87, 0x0a, 0x97, 0x42, 0xc7, 0x64, 0xb6, 0x51, 0x7c, 0xfb};
+    uint8_t real_data[] = {0x33, 0x17, 0x36, 0x00, 0x71, 0x3d, 0x87, 0x0a, 0x97,
+                           0x42, 0xc7, 0x64, 0xb6, 0x51, 0x7c, 0xfb};
     for (size_t i = 0; i < md5_value_size; i++)
     {
         CU_ASSERT_EQUAL(md5_value[i], real_data[i]);
