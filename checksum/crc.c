@@ -68,7 +68,7 @@ void crc_16_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
         crc_temp = (crc_temp << 8) ^ ((unsigned short)(x << 12)) ^ ((unsigned short)(x << 5)) ^ ((unsigned short)x);
     }
 
-    memcpy(crc, &crc_temp, 2);
+    ccrypto_memcpy(crc, &crc_temp, 2);
 }
 
 /**
@@ -97,7 +97,7 @@ void crc_32_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
         }
     }
 
-    memcpy(crc, &crc_temp, 4);
+    ccrypto_memcpy(crc, &crc_temp, 4);
 }
 
 ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type, uint8_t *crc_value, size_t *crc_value_size)

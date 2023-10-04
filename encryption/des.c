@@ -8,7 +8,7 @@
 
 #include "../common/types.h"
 
-ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, unsigned char *encrypted)
+ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key, unsigned char *data, size_t data_length, unsigned char *encrypted)
 {
     if (key == NULL || data == NULL || encrypted == NULL)
     {
@@ -36,7 +36,7 @@ ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key, unsigned char *data
     /* Provide the message to be encrypted, and obtain the encrypted output.
      * EVP_EncryptUpdate can be called multiple times if necessary
      */
-    if (1 != EVP_EncryptUpdate(ctx, encrypted, &len1, data, (int)strlen(data)))
+    if (1 != EVP_EncryptUpdate(ctx, encrypted, &len1, data, (int)data_length))
     {
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;
@@ -58,7 +58,7 @@ ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key, unsigned char *data
     return CCRYPTO_SUCCESS;
 }
 
-ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned char *data, unsigned char *encrypted)
+ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vector, unsigned char *data, size_t data_length, unsigned char *encrypted)
 {
     if (key == NULL || data == NULL || encrypted == NULL || vector == NULL)
     {
@@ -86,7 +86,7 @@ ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key, unsigned char *vect
     /* Provide the message to be encrypted, and obtain the encrypted output.
      * EVP_EncryptUpdate can be called multiple times if necessary
      */
-    if (1 != EVP_EncryptUpdate(ctx, encrypted, &len1, data, strlen(data)))
+    if (1 != EVP_EncryptUpdate(ctx, encrypted, &len1, data, (int)data_length))
     {
         EVP_CIPHER_CTX_free(ctx);
         return CCRYPTO_ERROR_OPENSSL;

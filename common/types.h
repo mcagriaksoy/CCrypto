@@ -33,6 +33,12 @@ typedef unsigned int ccrypto_error_type;
 #define CCRYPTO_ERROR_INVALID_ARGUMENT 15
 #define CCRYPTO_ERROR_OPENSSL 16
 
+#ifdef _WIN32
+#define ccrypto_memcpy(dest, destz, src, n) memcpy_s(dest, destz, src, n)
+#else
+#define ccrypto_memcpy(dest, src, n) memcpy(dest, src, n)
+#endif
+
 typedef enum
 {
     AES_128 = 128,

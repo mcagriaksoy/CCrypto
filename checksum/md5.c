@@ -43,7 +43,7 @@ ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value,
         return CCRYPTO_ERROR_OPENSSL;
     }
 
-    memcpy(md5_value, md5_digest, md5_digest_len);
+    ccrypto_memcpy(md5_value, md5_digest, md5_digest_len);
     *md5_value_size = md5_digest_len;
     OPENSSL_free(md5_digest);
     EVP_MD_CTX_free(mdctx);

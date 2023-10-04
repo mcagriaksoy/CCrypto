@@ -97,7 +97,7 @@ void test_all_3des(void)
     unsigned char encrypted[16];
 
     unsigned char real_data_ecb[] = {0xDC, 0xE5, 0x11, 0x62, 0xEA, 0x09, 0x86, 0xD7, 0xC4, 0xD7, 0x03, 0x40, 0x62, 0x12, 0x08, 0x89};
-    CU_ASSERT_EQUAL(des3_encrypt_with_ecb(key, plaintext, encrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(des3_encrypt_with_ecb(key, plaintext, strlen(plaintext), encrypted), CCRYPTO_SUCCESS);
 
     CU_ASSERT_NOT_EQUAL(memcmp(plaintext, encrypted, 8), 0);
     for (size_t i = 0; i < sizeof(real_data_ecb) - 1; i++)
@@ -118,7 +118,7 @@ void test_all_3des(void)
     // cbc TEST!
     // Initialization vector.
     unsigned char iv[] = "01234567";
-    CU_ASSERT_EQUAL(des3_encrypt_with_cbc(key, iv, plaintext, encrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(des3_encrypt_with_cbc(key, iv, plaintext, strlen(plaintext), encrypted), CCRYPTO_SUCCESS);
 
     unsigned char real_data_cbc[] = {0x12, 0xAB, 0x02, 0x5B, 0xCC, 0xC3, 0xD8, 0x68, 0x9A, 0xFE, 0xDC, 0xC6, 0xCE, 0xF1, 0xAA, 0xC2};
     for (size_t i = 0; i < sizeof(real_data_cbc) - 1; i++)

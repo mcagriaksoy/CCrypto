@@ -31,7 +31,6 @@ ccrypto_error_type decrypt_with_aes_cbc(unsigned char *ciphertext, size_t cipher
         break;
     default:
         printf("Error: Invalid aes size.\n");
-        free(cipher_type);
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 

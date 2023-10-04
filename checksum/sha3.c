@@ -83,7 +83,7 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
 
     EVP_MD_CTX_destroy(context);
 
-    memcpy(sha3_value, sha_value, sha_length);
+    ccrypto_memcpy(sha3_value, sha_value, sha_length);
     *sha3_value_size = sha_length;
     OPENSSL_free(sha_value);
 

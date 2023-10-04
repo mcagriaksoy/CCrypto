@@ -22,7 +22,7 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_
         return CCRYPTO_ERROR_OPENSSL;
     }
 
-    EVP_CIPHER *cipher_type = NULL;
+    const EVP_CIPHER *cipher_type = NULL;
     switch (aes_size)
     {
     case AES_128:
