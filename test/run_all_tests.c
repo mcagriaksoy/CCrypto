@@ -100,7 +100,7 @@ void test_all_3des(void)
 
     unsigned char real_data_ecb[] = {0xDC, 0xE5, 0x11, 0x62, 0xEA, 0x09, 0x86, 0xD7,
                                      0xC4, 0xD7, 0x03, 0x40, 0x62, 0x12, 0x08, 0x89};
-    CU_ASSERT_EQUAL(des3_encrypt_with_ecb(key, plaintext, strlen(plaintext), encrypted), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(des3_encrypt_with_ecb(key, plaintext, plaintext_len, encrypted), CCRYPTO_SUCCESS);
 
     CU_ASSERT_NOT_EQUAL(memcmp(plaintext, encrypted, 8), 0);
     for (size_t i = 0; i < sizeof(real_data_ecb) - 1; i++)
@@ -122,7 +122,7 @@ void test_all_3des(void)
     // cbc TEST!
     // Initialization vector.
     unsigned char iv[] = "01234567";
-    CU_ASSERT_EQUAL(des3_encrypt_with_cbc(key, iv, plaintext, strlen(plaintext), encrypted),
+    CU_ASSERT_EQUAL(des3_encrypt_with_cbc(key, iv, plaintext, plaintext_len, encrypted),
                     CCRYPTO_SUCCESS);
 
     unsigned char real_data_cbc[] = {0x12, 0xAB, 0x02, 0x5B, 0xCC, 0xC3, 0xD8, 0x68,
@@ -214,12 +214,11 @@ void test_all_ecc(void)
 
 void test_str_to_sha3(void)
 {
-    size_t str_size = strlen(plaintext);
     sha3_type algo_type = SHA3_256;
     uint8_t sha3_value[32];
     size_t sha3_value_size;
 
-    CU_ASSERT_EQUAL(str_to_sha3(plaintext, str_size, algo_type, sha3_value, &sha3_value_size), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(str_to_sha3(plaintext, plaintext_len, algo_type, sha3_value, &sha3_value_size), CCRYPTO_SUCCESS);
 
     CU_ASSERT_EQUAL(sha3_value_size, 32);
     uint8_t real_data[] = {0x26, 0xa0, 0x3d, 0x18, 0x5f, 0x96, 0x98, 0x9a, 0xb1, 0xb9, 0xdc, 0xdd, 0x35,
@@ -234,20 +233,19 @@ void test_str_to_sha3(void)
 void test_str_to_crc(void)
 {
     // TEST CRC8 ALGORITHM
-    size_t str_size = strlen(plaintext);
     crc_type_t crc_type = CRC8;
     uint8_t crc_value[8];
     size_t crc_value_size;
 
-    CU_ASSERT_EQUAL(str_to_crc(plaintext, str_size, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(str_to_crc(plaintext, plaintext_len, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
 
     CU_ASSERT_EQUAL(crc_value_size, 1);
-    CU_ASSERT_EQUAL(crc_value[0], 0x35);
+    CU_ASSERT_EQUAL(crc_value[0], 53);
 
     // TEST CRC16/AUG-CCITT ALGORITHM
     crc_type = CRC16;
 
-    CU_ASSERT_EQUAL(str_to_crc(plaintext, str_size, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(str_to_crc(plaintext, plaintext_len, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
 
     CU_ASSERT_EQUAL(crc_value_size, 2);
     uint8_t real_data[] = {0x59, 0xd4};
@@ -260,7 +258,7 @@ void test_str_to_crc(void)
     // TEST CRC-32/JAMCRC ALGORITHM
     crc_type = CRC32;
 
-    CU_ASSERT_EQUAL(str_to_crc(plaintext, str_size, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(str_to_crc(plaintext, plaintext_len, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
 
     CU_ASSERT_EQUAL(crc_value_size, 4);
     uint8_t real_data2[] = {0xba, 0x5e, 0x46, 0xba};
@@ -273,11 +271,10 @@ void test_str_to_crc(void)
 
 void test_str_to_md5(void)
 {
-    size_t str_size = strlen(plaintext);
     uint8_t md5_value[16];
     size_t md5_value_size;
 
-    CU_ASSERT_EQUAL(str_to_md5(plaintext, str_size, md5_value, &md5_value_size), CCRYPTO_SUCCESS);
+    CU_ASSERT_EQUAL(str_to_md5(plaintext, plaintext_len, md5_value, &md5_value_size), CCRYPTO_SUCCESS);
 
     CU_ASSERT_EQUAL(md5_value_size, 16);
     uint8_t real_data[] = {0x33, 0x17, 0x36, 0x00, 0x71, 0x3d, 0x87, 0x0a, 0x97,

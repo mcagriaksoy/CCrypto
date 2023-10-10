@@ -19,7 +19,7 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
     }
 
     uint32_t sha_length;
-    EVP_MD *algorithm = NULL;
+    const EVP_MD *algorithm = NULL;
     switch (algo_type)
     {
     case SHA3_224:
@@ -40,7 +40,6 @@ ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_typ
         break;
     default:
         printf("Error: Invalid sha3 type.\n");
-        free(algorithm);
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
