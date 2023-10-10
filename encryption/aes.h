@@ -20,8 +20,13 @@
  * @param ciphertext_len A pointer to the length of the ciphertext buffer.
  * @return ccrypto_error_type
  */
-ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
-                                        unsigned char *ciphertext, size_t *ciphertext_len);
+ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext,
+                                        int plaintext_len,
+                                        ccrypto_aes_size_t aes_size,
+                                        unsigned char *key,
+                                        unsigned char *iv,
+                                        unsigned char *ciphertext,
+                                        size_t *ciphertext_len);
 
 /**
  * Encrypts the given plaintext using AES in ECB mode.
@@ -34,7 +39,11 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_
  * @param ciphertext_len A pointer to the length of the ciphertext buffer.
  * @return ccrypto_error_type
  */
-ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
-                                        unsigned char *ciphertext, size_t *ciphertext_len);
+ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext,
+                                        int plaintext_len,
+                                        ccrypto_aes_size_t aes_size,
+                                        unsigned char *key,
+                                        unsigned char *ciphertext,
+                                        size_t *ciphertext_len);
 
 #endif // CCRYPTO_AES_H

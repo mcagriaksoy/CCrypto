@@ -24,12 +24,11 @@
  *         If the decryption was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during decryption, an appropriate error code is returned.
  */
-ccrypto_error_type des3_decrypt_with_ecb(
-    const uint8_t *key,
-    const uint8_t *input,
-    size_t input_length,
-    uint8_t *output,
-    size_t *output_length);
+ccrypto_error_type des3_decrypt_with_ecb(const uint8_t *key,
+                                         const uint8_t *input,
+                                         size_t input_length,
+                                         uint8_t *output,
+                                         size_t *output_length);
 
 /**
  * @brief Decrypts data using the Triple DES algorithm in CBC mode.
@@ -49,12 +48,11 @@ ccrypto_error_type des3_decrypt_with_ecb(
  *         If the decryption was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during decryption, an appropriate error code is returned.
  */
-ccrypto_error_type des3_decrypt_with_cbc(
-    const uint8_t *key,
-    const uint8_t *iv,
-    const uint8_t *input,
-    size_t input_length,
-    uint8_t *output,
-    size_t *output_length);
+ccrypto_error_type des3_decrypt_with_cbc(const uint8_t *key,
+                                         const uint8_t *iv,
+                                         const uint8_t *input,
+                                         size_t input_length,
+                                         uint8_t *output,
+                                         size_t *output_length);
 
 #endif // CCRYPTO_DECRYPT_DES_H

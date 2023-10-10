@@ -30,40 +30,40 @@ ccrypto_error_type ccrypto_ecc_decrypt(const uint8_t *private_key,
     }
 
     // Set the private key
-    EC_POINT *ec_point = EC_POINT_new(EC_KEY_get0_group(ec_key));
-    if (ec_point == NULL)
+    BIGNUM *bn = BN_new();
+    if (bn == NULL)
     {
         EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
-    if (EC_POINT_oct2point(EC_KEY_get0_group(ec_key), ec_point, private_key, 32, NULL) != 1)
+    if (BN_bin2bn(private_key, 32, bn) == NULL)
     {
-        EC_POINT_free(ec_point);
+        BN_free(bn);
         EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
-    if (EC_KEY_set_private_key(ec_key, ec_point) != 1)
+    if (EC_KEY_set_private_key(ec_key, bn) != 1)
     {
-        EC_POINT_free(ec_point);
+        BN_free(bn);
         EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
+
+    BN_free(bn);
+    EC_KEY_free(ec_key);
 
     // Initialize the decryption context
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     if (ctx == NULL)
     {
-        EC_POINT_free(ec_point);
-        EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
+
     if (EVP_DecryptInit_ex(ctx, EVP_aes_256_ecb(), NULL, private_key, NULL) != 1)
     {
         EVP_CIPHER_CTX_free(ctx);
-        EC_POINT_free(ec_point);
-        EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
@@ -72,24 +72,16 @@ ccrypto_error_type ccrypto_ecc_decrypt(const uint8_t *private_key,
     if (EVP_DecryptUpdate(ctx, decrypted_data, &len, data, data_length) != 1)
     {
         EVP_CIPHER_CTX_free(ctx);
-        EC_POINT_free(ec_point);
-        EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
     *decrypted_data_length = len;
     if (EVP_DecryptFinal_ex(ctx, decrypted_data + len, &len) != 1)
     {
         EVP_CIPHER_CTX_free(ctx);
-        EC_POINT_free(ec_point);
-        EC_KEY_free(ec_key);
         return CCRYPTO_ERROR_OPENSSL;
     }
     *decrypted_data_length += len;
 
-    // Clean up
     EVP_CIPHER_CTX_free(ctx);
-    EC_POINT_free(ec_point);
-    EC_KEY_free(ec_key);
-
     return CCRYPTO_SUCCESS;
 }

@@ -5,8 +5,13 @@
 #include <openssl/evp.h>
 #include <string.h>
 
-ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key, unsigned char *iv,
-                                        unsigned char *ciphertext, size_t *ciphertext_len)
+ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext,
+                                        int plaintext_len,
+                                        ccrypto_aes_size_t aes_size,
+                                        unsigned char *key,
+                                        unsigned char *iv,
+                                        unsigned char *ciphertext,
+                                        size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || iv == NULL || ciphertext == NULL || ciphertext_len == NULL)
     {
@@ -36,7 +41,6 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_
         break;
     default:
         printf("Error: Invalid aes size.\n");
-        free(cipher_type);
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
@@ -78,8 +82,12 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext, int plaintext_
     return CCRYPTO_SUCCESS;
 }
 
-ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_len, ccrypto_aes_size_t aes_size, unsigned char *key,
-                                        unsigned char *ciphertext, size_t *ciphertext_len)
+ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext,
+                                        int plaintext_len,
+                                        ccrypto_aes_size_t aes_size,
+                                        unsigned char *key,
+                                        unsigned char *ciphertext,
+                                        size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || ciphertext == NULL || ciphertext_len == NULL)
     {
@@ -95,7 +103,7 @@ ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_
         return CCRYPTO_ERROR_OPENSSL;
     }
 
-    EVP_CIPHER *cipher_type = NULL;
+    const EVP_CIPHER *cipher_type = NULL;
     switch (aes_size)
     {
     case AES_128:
@@ -109,7 +117,6 @@ ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext, int plaintext_
         break;
     default:
         printf("Error: Invalid aes size.\n");
-        free(cipher_type);
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 

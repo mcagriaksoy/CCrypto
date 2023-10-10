@@ -35,7 +35,10 @@ typedef enum
  *         If the hashing was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during hashing, an appropriate error code is returned.
  */
-ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_type,
-                               uint8_t *sha3_value, size_t *sha3_value_size);
+ccrypto_error_type str_to_sha3(uint8_t *str,
+                               size_t str_size,
+                               sha3_type algo_type,
+                               uint8_t *sha3_value,
+                               size_t *sha3_value_size);
 
 #endif // CCRYPTO_SHA3_H

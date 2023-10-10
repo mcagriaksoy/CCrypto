@@ -27,7 +27,10 @@
  *         If the hashing was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during hashing, an appropriate error code is returned.
  */
-ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type,
-                              uint8_t *crc_value, size_t *crc_value_size);
+ccrypto_error_type str_to_crc(uint8_t *str,
+                              size_t str_size,
+                              crc_type_t crc_type,
+                              uint8_t *crc_value,
+                              size_t *crc_value_size);
 
 #endif // CCRYPTO_CRC_H

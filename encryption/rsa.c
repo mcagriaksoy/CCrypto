@@ -38,6 +38,8 @@ ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char
         return CCRYPTO_ERROR_OPENSSL;
     }
 
+    BIO_free(bio);
+
     // Create an RSA encryption context
     ctx = EVP_PKEY_CTX_new(pkey, NULL);
     if (!ctx)
@@ -45,17 +47,16 @@ ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char
         fprintf(stderr, "Error creating encryption context\n");
         ERR_print_errors_fp(stderr);
         EVP_PKEY_free(pkey);
-        BIO_free(bio);
         return CCRYPTO_ERROR_OPENSSL;
     }
+
+    EVP_PKEY_free(pkey);
 
     if (EVP_PKEY_encrypt_init(ctx) <= 0)
     {
         fprintf(stderr, "Error initializing encryption context\n");
         ERR_print_errors_fp(stderr);
         EVP_PKEY_CTX_free(ctx);
-        EVP_PKEY_free(pkey);
-        BIO_free(bio);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
@@ -65,8 +66,6 @@ ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char
         fprintf(stderr, "Error setting padding mode\n");
         ERR_print_errors_fp(stderr);
         EVP_PKEY_CTX_free(ctx);
-        EVP_PKEY_free(pkey);
-        BIO_free(bio);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
@@ -76,8 +75,6 @@ ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char
         fprintf(stderr, "Error determining encrypted message size\n");
         ERR_print_errors_fp(stderr);
         EVP_PKEY_CTX_free(ctx);
-        EVP_PKEY_free(pkey);
-        BIO_free(bio);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
@@ -89,15 +86,11 @@ ccrypto_error_type encrypt_with_rsa(char *message, char *encrypted_message, char
         fprintf(stderr, "Error encrypting message\n");
         ERR_print_errors_fp(stderr);
         EVP_PKEY_CTX_free(ctx);
-        EVP_PKEY_free(pkey);
-        BIO_free(bio);
         return CCRYPTO_ERROR_OPENSSL;
     }
 
     // Clean up
     EVP_PKEY_CTX_free(ctx);
-    EVP_PKEY_free(pkey);
-    BIO_free(bio);
 
     return CCRYPTO_SUCCESS;
 }

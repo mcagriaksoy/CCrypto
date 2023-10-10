@@ -7,8 +7,15 @@
 #include <stdio.h>
 #include <string.h>
 
-ccrypto_error_type ccrypto_blowfish_decrypt(const uint8_t *key, size_t key_size,
-                                            const uint8_t *data, size_t data_size,
+#define MIN_KEY_SIZE 4
+#define MAX_KEY_SIZE 56
+
+#define BLOCK_SIZE 8
+
+ccrypto_error_type ccrypto_blowfish_decrypt(const uint8_t *key,
+                                            size_t key_size,
+                                            const uint8_t *data,
+                                            size_t data_size,
                                             uint8_t *output)
 {
     if (key == NULL || data == NULL || output == NULL)
@@ -17,13 +24,13 @@ ccrypto_error_type ccrypto_blowfish_decrypt(const uint8_t *key, size_t key_size,
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
-    if (data_size % 8 != 0)
+    if (data_size % BLOCK_SIZE != 0)
     {
         printf("Error: data_size must be a multiple of 8\n");
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
-    if (key_size < 4 || key_size > 56)
+    if (key_size < MIN_KEY_SIZE || key_size > MAX_KEY_SIZE)
     {
         printf("Error: key_size must be between 4 and 56\n");
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
@@ -33,7 +40,7 @@ ccrypto_error_type ccrypto_blowfish_decrypt(const uint8_t *key, size_t key_size,
     BF_KEY bf_key;
     BF_set_key(&bf_key, (int)key_size, key);
 
-    for (int i = 0; i < data_size; i += 8)
+    for (int i = 0; i < data_size; i += BLOCK_SIZE)
     {
         // Decrypt the data
         BF_ecb_encrypt(data, output, &bf_key, BF_DECRYPT);
