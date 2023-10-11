@@ -10,7 +10,11 @@
 #include <openssl/evp.h>
 #include <openssl/sha.h>
 
-ccrypto_error_type str_to_sha3(uint8_t *str, size_t str_size, sha3_type algo_type, uint8_t *sha3_value, size_t *sha3_value_size)
+ccrypto_error_type str_to_sha3(const uint8_t *str,
+                               size_t str_size,
+                               sha3_type algo_type,
+                               uint8_t *sha3_value,
+                               size_t *sha3_value_size)
 {
     if (str == NULL || str_size == 0 || sha3_value == NULL || sha3_value_size == NULL)
     {

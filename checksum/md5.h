@@ -25,6 +25,9 @@
  *         If the hashing was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during hashing, an appropriate error code is returned.
  */
-ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size);
+ccrypto_error_type str_to_md5(const uint8_t *str,
+                              size_t str_size,
+                              uint8_t *md5_value,
+                              size_t *md5_value_size);
 
 #endif // CCRYPTO_MD5_H

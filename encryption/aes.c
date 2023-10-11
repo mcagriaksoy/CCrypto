@@ -5,12 +5,12 @@
 #include <openssl/evp.h>
 #include <string.h>
 
-ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext,
-                                        int plaintext_len,
+ccrypto_error_type encrypt_with_aes_cbc(const uint8_t *plaintext,
+                                        size_t plaintext_len,
                                         ccrypto_aes_size_t aes_size,
-                                        unsigned char *key,
-                                        unsigned char *iv,
-                                        unsigned char *ciphertext,
+                                        uint8_t *key,
+                                        uint8_t *iv,
+                                        uint8_t *ciphertext,
                                         size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || iv == NULL || ciphertext == NULL || ciphertext_len == NULL)
@@ -82,11 +82,11 @@ ccrypto_error_type encrypt_with_aes_cbc(unsigned char *plaintext,
     return CCRYPTO_SUCCESS;
 }
 
-ccrypto_error_type encrypt_with_aes_ecb(unsigned char *plaintext,
-                                        int plaintext_len,
+ccrypto_error_type encrypt_with_aes_ecb(const uint8_t *plaintext,
+                                        size_t plaintext_len,
                                         ccrypto_aes_size_t aes_size,
-                                        unsigned char *key,
-                                        unsigned char *ciphertext,
+                                        uint8_t *key,
+                                        uint8_t *ciphertext,
                                         size_t *ciphertext_len)
 {
     if (plaintext == NULL || key == NULL || ciphertext == NULL || ciphertext_len == NULL)

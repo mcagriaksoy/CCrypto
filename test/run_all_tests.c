@@ -24,7 +24,7 @@
 // common
 #include "../common/types.h"
 
-unsigned char plaintext[] = "Hello word!";
+const uint8_t plaintext[] = "Hello word!";
 size_t plaintext_len = 11U;
 
 void test_all_with_aes_ecb(void)

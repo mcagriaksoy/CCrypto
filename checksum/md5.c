@@ -7,7 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-ccrypto_error_type str_to_md5(uint8_t *str, size_t str_size, uint8_t *md5_value, size_t *md5_value_size)
+ccrypto_error_type str_to_md5(const uint8_t *str,
+                              size_t str_size,
+                              uint8_t *md5_value,
+                              size_t *md5_value_size)
 {
     if (str == NULL || md5_value == NULL || md5_value_size == NULL)
     {

@@ -20,7 +20,7 @@
  *
  * @return None.
  */
-void crc_8_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
+void crc_8_calculation(const uint8_t *str, size_t str_size, uint8_t *crc)
 {
     if (str == NULL || str_size == 0 || crc == NULL)
     {
@@ -61,7 +61,7 @@ void crc_8_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
  *
  * @return None.
  */
-void crc_16_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
+void crc_16_calculation(const uint8_t *str, size_t str_size, uint8_t *crc)
 {
     uint8_t x;
     uint16_t crc_temp = 0xFFFF;
@@ -89,7 +89,7 @@ void crc_16_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
  *
  * @return None.
  */
-void crc_32_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
+void crc_32_calculation(const uint8_t *str, size_t str_size, uint8_t *crc)
 {
     uint32_t crc_temp = 0xFFFFFFFF;
     size_t length = str_size;
@@ -106,8 +106,11 @@ void crc_32_calculation(uint8_t *str, size_t str_size, uint8_t *crc)
     ccrypto_memcpy(crc, &crc_temp, 4);
 }
 
-ccrypto_error_type str_to_crc(uint8_t *str, size_t str_size, crc_type_t crc_type,
-                              uint8_t *crc_value, size_t *crc_value_size)
+ccrypto_error_type str_to_crc(const uint8_t *str,
+                              size_t str_size,
+                              crc_type_t crc_type,
+                              uint8_t *crc_value,
+                              size_t *crc_value_size)
 {
     if (str == NULL || str_size == 0 || crc_value == NULL || crc_value_size == NULL)
     {
