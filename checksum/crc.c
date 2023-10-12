@@ -106,28 +106,28 @@ void crc_32_calculation(const uint8_t *str, size_t str_size, uint8_t *crc)
     ccrypto_memcpy(crc, &crc_temp, 4);
 }
 
-ccrypto_error_type str_to_crc(const uint8_t *str,
-                              size_t str_size,
+ccrypto_error_type str_to_crc(const uint8_t *plaintext,
+                              size_t plaintext_size,
                               crc_type_t crc_type,
                               uint8_t *crc_value,
                               size_t *crc_value_size)
 {
-    if (str == NULL || str_size == 0 || crc_value == NULL || crc_value_size == NULL)
+    if (plaintext == NULL || plaintext_size == 0 || crc_value == NULL || crc_value_size == NULL)
     {
-        printf("Error: str, str_size, crc_value and crc_value_size must not be NULL\n");
+        printf("Error: plaintext, plaintext_size, crc_value and crc_value_size must not be NULL\n");
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
     switch (crc_type)
     {
     case CRC8:
-        crc_8_calculation(str, str_size, crc_value);
+        crc_8_calculation(plaintext, plaintext_size, crc_value);
         break;
     case CRC16:
-        crc_16_calculation(str, str_size, crc_value);
+        crc_16_calculation(plaintext, plaintext_size, crc_value);
         break;
     case CRC32:
-        crc_32_calculation(str, str_size, crc_value);
+        crc_32_calculation(plaintext, plaintext_size, crc_value);
         break;
     default:
         printf("Error: Invalid crc type.\n");

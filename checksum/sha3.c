@@ -10,15 +10,15 @@
 #include <openssl/evp.h>
 #include <openssl/sha.h>
 
-ccrypto_error_type str_to_sha3(const uint8_t *str,
-                               size_t str_size,
+ccrypto_error_type str_to_sha3(const uint8_t *plaintext,
+                               size_t plaintext_size,
                                sha3_type algo_type,
                                uint8_t *sha3_value,
                                size_t *sha3_value_size)
 {
-    if (str == NULL || str_size == 0 || sha3_value == NULL || sha3_value_size == NULL)
+    if (plaintext == NULL || plaintext_size == 0 || sha3_value == NULL || sha3_value_size == NULL)
     {
-        printf("Error: str, str_size, sha3_value and sha3_value_size must not be NULL\n");
+        printf("Error: plaintext, plaintext_size, sha3_value and sha3_value_size must not be NULL\n");
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
     }
 
@@ -67,7 +67,7 @@ ccrypto_error_type str_to_sha3(const uint8_t *str,
     }
 
     // SHA_Update
-    if (EVP_DigestUpdate(context, str, str_size) == 0)
+    if (EVP_DigestUpdate(context, plaintext, plaintext_size) == 0)
     {
         printf("Error: EVP_DigestUpdate failed.\n");
         OPENSSL_free(sha_value);

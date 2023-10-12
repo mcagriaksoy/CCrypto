@@ -8,10 +8,10 @@
 
 #include "../common/types.h"
 
-ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key,
-                                         unsigned char *data,
+ccrypto_error_type des3_encrypt_with_ecb(const uint8_t *key,
+                                         const uint8_t *data,
                                          size_t data_length,
-                                         unsigned char *encrypted)
+                                         uint8_t *encrypted)
 {
     if (key == NULL || data == NULL || encrypted == NULL)
     {
@@ -61,11 +61,11 @@ ccrypto_error_type des3_encrypt_with_ecb(unsigned char *key,
     return CCRYPTO_SUCCESS;
 }
 
-ccrypto_error_type des3_encrypt_with_cbc(unsigned char *key,
-                                         unsigned char *vector,
-                                         unsigned char *data,
+ccrypto_error_type des3_encrypt_with_cbc(const uint8_t *key,
+                                         const uint8_t *vector,
+                                         const uint8_t *data,
                                          size_t data_length,
-                                         unsigned char *encrypted)
+                                         uint8_t *encrypted)
 {
     if (key == NULL || data == NULL || encrypted == NULL || vector == NULL)
     {

@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -I -Wall -Wextra -O3
+CFLAGS = -I -Wall -Wextra -O3 -DOPENSSL_SUPPRESS_DEPRECATED
 LIBS = -lssl -lcrypto -lcunit
 SRCS = run_all_tests.c \
 	   ../encryption/aes.c \

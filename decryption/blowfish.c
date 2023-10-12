@@ -40,7 +40,7 @@ ccrypto_error_type ccrypto_blowfish_decrypt(const uint8_t *key,
     BF_KEY bf_key;
     BF_set_key(&bf_key, (int)key_size, key);
 
-    for (int i = 0; i < data_size; i += BLOCK_SIZE)
+    for (size_t i = 0; i < data_size; i += BLOCK_SIZE)
     {
         // Decrypt the data
         BF_ecb_encrypt(data, output, &bf_key, BF_DECRYPT);

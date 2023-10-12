@@ -7,12 +7,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-ccrypto_error_type str_to_md5(const uint8_t *str,
-                              size_t str_size,
+ccrypto_error_type str_to_md5(const uint8_t *plaintext,
+                              size_t plaintext_size,
                               uint8_t *md5_value,
                               size_t *md5_value_size)
 {
-    if (str == NULL || md5_value == NULL || md5_value_size == NULL)
+    if (plaintext == NULL || plaintext_size == 0 || md5_value == NULL || md5_value_size == NULL)
     {
         printf("Error: str, md5_value and md5_value_size must not be NULL\n");
         return CCRYPTO_ERROR_INVALID_ARGUMENT;
@@ -31,7 +31,7 @@ ccrypto_error_type str_to_md5(const uint8_t *str,
     }
 
     // MD5_Update
-    if (EVP_DigestUpdate(mdctx, str, str_size) == 0)
+    if (EVP_DigestUpdate(mdctx, plaintext, plaintext_size) == 0)
     {
         EVP_MD_CTX_free(mdctx);
         return CCRYPTO_ERROR_OPENSSL;

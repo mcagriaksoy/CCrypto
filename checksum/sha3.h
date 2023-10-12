@@ -25,8 +25,8 @@ typedef enum
  * SHA-3 algorithm type. The resulting hash value is stored in the output buffer,
  * and the length of the hash value is stored in the output length variable.
  *
- * @param str The string to hash.
- * @param str_size The length of the string to hash.
+ * @param plaintext The string to hash.
+ * @param plaintext_size The length of the string to hash.
  * @param algo_type The SHA-3 algorithm type to use for hashing.
  * @param sha3_value The output buffer to store the hash value.
  * @param sha3_value_size A pointer to a variable to store the length of the hash value.
@@ -35,8 +35,8 @@ typedef enum
  *         If the hashing was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during hashing, an appropriate error code is returned.
  */
-ccrypto_error_type str_to_sha3(const uint8_t *str,
-                               size_t str_size,
+ccrypto_error_type str_to_sha3(const uint8_t *plaintext,
+                               size_t plaintext_size,
                                sha3_type algo_type,
                                uint8_t *sha3_value,
                                size_t *sha3_value_size);

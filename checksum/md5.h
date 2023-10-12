@@ -16,8 +16,8 @@
  * is stored in the output buffer, and the length of the hash value is stored in the
  * output length variable.
  *
- * @param str The string to hash.
- * @param str_size The length of the string to hash.
+ * @param plaintext The string to hash.
+ * @param plaintext_size The length of the string to hash.
  * @param md5_value The output buffer to store the hash value.
  * @param md5_value_size A pointer to a variable to store the length of the hash value.
  *
@@ -25,8 +25,8 @@
  *         If the hashing was successful, CCRYPTO_SUCCESS is returned.
  *         If an error occurred during hashing, an appropriate error code is returned.
  */
-ccrypto_error_type str_to_md5(const uint8_t *str,
-                              size_t str_size,
+ccrypto_error_type str_to_md5(const uint8_t *plaintext,
+                              size_t plaintext_size,
                               uint8_t *md5_value,
                               size_t *md5_value_size);
 
