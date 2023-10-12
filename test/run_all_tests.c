@@ -31,7 +31,7 @@ void test_all_with_aes_ecb(void)
 {
     ccrypto_aes_size_t aes_size = AES_256;
     unsigned char key[] = "01234567890123456789012345678901";
-    unsigned char ciphertext[32];
+    unsigned char ciphertext[32] = {0};
     size_t ciphertext_len;
 
     CU_ASSERT_EQUAL(encrypt_with_aes_ecb(plaintext, plaintext_len, aes_size, key, ciphertext, &ciphertext_len), CCRYPTO_SUCCESS);
@@ -44,7 +44,7 @@ void test_all_with_aes_ecb(void)
         CU_ASSERT_EQUAL(ciphertext[i], real_data[i]);
     }
 
-    unsigned char gathered_plaintext[32];
+    unsigned char gathered_plaintext[32] = {0};
     size_t gathered_plaintext_len;
     CU_ASSERT_EQUAL(decrypt_with_aes_ecb(ciphertext, ciphertext_len, aes_size, key, gathered_plaintext, &gathered_plaintext_len), CCRYPTO_SUCCESS);
     for (size_t i = 0; i < gathered_plaintext_len; i++)
@@ -58,7 +58,7 @@ void test_all_with_aes_ccb(void)
     ccrypto_aes_size_t aes_size = AES_256;
     unsigned char key[] = "01234567890123456789012345678901";
     unsigned char iv[] = "0123456789012345";
-    unsigned char ciphertext[32];
+    unsigned char ciphertext[32] = {0};
     size_t ciphertext_len;
 
     encrypt_with_aes_cbc(plaintext, plaintext_len, aes_size, key, iv, ciphertext, &ciphertext_len);
@@ -70,7 +70,7 @@ void test_all_with_aes_ccb(void)
         CU_ASSERT_EQUAL(ciphertext[i], real_data[i]);
     }
 
-    unsigned char gathered_plaintext[32];
+    unsigned char gathered_plaintext[32] = {0};
     size_t gathered_plaintext_len;
     CU_ASSERT_EQUAL(decrypt_with_aes_cbc(ciphertext, ciphertext_len, aes_size, key, iv, gathered_plaintext, &gathered_plaintext_len), CCRYPTO_SUCCESS);
     for (size_t i = 0; i < gathered_plaintext_len; i++)
@@ -81,7 +81,7 @@ void test_all_with_aes_ccb(void)
 
 void test_all_with_rsa(void)
 {
-    char encrypted_message[256];
+    char encrypted_message[256] = {0};
     char public_key[] = "-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMe97tXGYHZK3EuTeXJQKxHcYXvR4NM4KxB2h9T4GxJzwzV1\n-----END PUBLIC KEY-----\n";
     char real_data[] = "Lw4xGb3IBRUTXBIA+B54rjAzLbWYGuVbGiGvOox0sygtHVAwwoKiYvA7qPEMuY95c30NQQfh2h7V9vc26KOSPg==";
 
@@ -96,7 +96,7 @@ void test_all_with_rsa(void)
 void test_all_3des(void)
 {
     unsigned char key[] = "012345678910111213140123456789";
-    unsigned char encrypted[16];
+    unsigned char encrypted[16] = {0};
 
     unsigned char real_data_ecb[] = {0xDC, 0xE5, 0x11, 0x62, 0xEA, 0x09, 0x86, 0xD7,
                                      0xC4, 0xD7, 0x03, 0x40, 0x62, 0x12, 0x08, 0x89};
@@ -109,7 +109,7 @@ void test_all_3des(void)
     }
 
     // Decrypt the data
-    unsigned char decrypted[16];
+    unsigned char decrypted[16] = {0};
     size_t decrypted_len;
     CU_ASSERT_EQUAL(des3_decrypt_with_ecb(key, encrypted, sizeof(encrypted), decrypted, &decrypted_len),
                     CCRYPTO_SUCCESS);
@@ -155,7 +155,7 @@ void test_all_blowfish(void)
 
     const uint8_t real_data_blowfish[8] = {0xc0, 0x45, 0x04, 0x01, 0x2e, 0x4e, 0x1f, 0x53};
 
-    uint8_t encrypted[32];
+    uint8_t encrypted[32] = {0};
     size_t data_length = strlen(input_text);
     CU_ASSERT_EQUAL(ccrypto_blowfish_encrypt(key, sizeof(key), input_text, sizeof(input_text), encrypted),
                     CCRYPTO_SUCCESS);
@@ -166,7 +166,7 @@ void test_all_blowfish(void)
         CU_ASSERT_EQUAL((int)encrypted[i], (int)real_data_blowfish[i]);
     }
 
-    uint8_t decrypted[32];
+    uint8_t decrypted[32] = {0};
     CU_ASSERT_EQUAL(ccrypto_blowfish_decrypt(key, sizeof(key), encrypted, sizeof(encrypted), decrypted),
                     CCRYPTO_SUCCESS);
     CU_ASSERT_NOT_EQUAL(memcmp(input_text, decrypted, data_length), 0);
@@ -191,7 +191,7 @@ void test_all_ecc(void)
                                    0xd8, 0xee, 0x26, 0x38, 0x1e, 0xb5, 0xd6, 0xc3};
 
     // const size_t data_length = strlen((const char *)plaintext);
-    // uint8_t encrypted_data[1024];
+    // uint8_t encrypted_data[1024] = {0};
     // size_t encrypted_data_length;
 
     // TODO fix the tests!
@@ -199,7 +199,7 @@ void test_all_ecc(void)
     // ccrypto_ecc_encrypt(public_key, plaintext, data_length, encrypted_data, &encrypted_data_length);
 
     // Decrypt the data
-    // uint8_t decrypted_data[1024];
+    // uint8_t decrypted_data[1024] = {0};
     // size_t decrypted_data_length;
     // ccrypto_ecc_decrypt(private_key, encrypted_data, encrypted_data_length, decrypted_data, &decrypted_data_length);
 
@@ -215,7 +215,7 @@ void test_all_ecc(void)
 void test_str_to_sha3(void)
 {
     sha3_type algo_type = SHA3_256;
-    uint8_t sha3_value[32];
+    uint8_t sha3_value[32] = {0};
     size_t sha3_value_size;
 
     CU_ASSERT_EQUAL(str_to_sha3(plaintext, plaintext_len, algo_type, sha3_value, &sha3_value_size), CCRYPTO_SUCCESS);
@@ -234,7 +234,7 @@ void test_str_to_crc(void)
 {
     // TEST CRC8 ALGORITHM
     crc_type_t crc_type = CRC8;
-    uint8_t crc_value[8];
+    uint8_t crc_value[8] = {0};
     size_t crc_value_size;
 
     CU_ASSERT_EQUAL(str_to_crc(plaintext, plaintext_len, crc_type, crc_value, &crc_value_size), CCRYPTO_SUCCESS);
@@ -271,7 +271,7 @@ void test_str_to_crc(void)
 
 void test_str_to_md5(void)
 {
-    uint8_t md5_value[16];
+    uint8_t md5_value[16] = {0};
     size_t md5_value_size;
 
     CU_ASSERT_EQUAL(str_to_md5(plaintext, plaintext_len, md5_value, &md5_value_size), CCRYPTO_SUCCESS);
@@ -288,6 +288,7 @@ void test_str_to_md5(void)
 // Test main
 int main()
 {
+    // initialize the CUnit test registry
     CU_initialize_registry();
     CU_pSuite suite = CU_add_suite("All tests", NULL, NULL);
 
@@ -306,6 +307,9 @@ int main()
 
     // Run all tests
     CU_basic_run_tests();
+
+    // cleanup
     CU_cleanup_registry();
+
     return 0;
 }

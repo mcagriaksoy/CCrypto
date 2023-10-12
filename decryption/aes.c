@@ -73,6 +73,7 @@ ccrypto_error_type decrypt_with_aes_cbc(unsigned char *ciphertext, size_t cipher
     }
 
     *plaintext_len = (len1 + len2);
+    EVP_CIPHER_CTX_free(ctx);
     return CCRYPTO_SUCCESS;
 }
 
@@ -142,5 +143,6 @@ ccrypto_error_type decrypt_with_aes_ecb(unsigned char *ciphertext, size_t cipher
     }
 
     *plaintext_len = (len1 + len2);
+    EVP_CIPHER_CTX_free(ctx);
     return CCRYPTO_SUCCESS;
 }
