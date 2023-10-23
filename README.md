@@ -81,8 +81,8 @@ Under /test folder when you trigger the make, you will see the object named `run
 </div>
 <h2>Documentation</h2>
 <div align="center">
-<a href="/docs/index.html" title="Go to project documentation"><img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation"></a>
-
+<a href="https://mcagriaksoy.github.io/CCrypto/" title="Go to project documentation"><img src="https://img.shields.io/badge/View%20The%20Documentation-89CFF0" alt="view - Documentation"></a>
+<a href="https://mcagriaksoy.github.io/CCrypto/" title="Go to project documentation"><img src="https://img.shields.io/badge/GitHub%20Pages%20Visit%20The%20Website-8A2BE2" alt="Project Website"></a>
 </div>
 <h2>License</h2>
 Released under <a href="/LICENSE">MIT</a> by <a href="https://github.com/mcagriaksoy">@mcagriaksoy</a>.
