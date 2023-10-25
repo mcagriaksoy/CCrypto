@@ -1,5 +1,9 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file crc.c
+ * @brief This file contains the implementation of the CRC checksum algorithm.
+ *
+ * This implementation was created by Mehmet Cagri Aksoy in 2023 and can be found on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "crc.h"
 

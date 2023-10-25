@@ -1,5 +1,11 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file rsa.c
+ * @brief This file contains the implementation of RSA encryption algorithm.
+ *
+ * This file provides the implementation of RSA encryption algorithm, which is a widely used public-key
+ * cryptosystem. The implementation is created by Mehmet Cagri Aksoy in 2023 and can be found on his
+ * GitHub profile at github.com/mcagriaksoy.
+ */
 
 #include "rsa.h"
 #include <openssl/err.h>

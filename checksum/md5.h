@@ -1,6 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
-
+/**
+ * @file md5.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of MD5 checksum functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 #ifndef CCRYPTO_MD5_H
 #define CCRYPTO_MD5_H
 

@@ -1,6 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
-
+/**
+ * @file sha3.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of SHA3 checksum functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 #ifndef CCRYPTO_SHA3_H
 #define CCRYPTO_SHA3_H
 

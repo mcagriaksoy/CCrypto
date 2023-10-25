@@ -1,5 +1,11 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file aes.c
+ * @brief Implementation of the Advanced Encryption Standard (AES) algorithm.
+ *
+ * This file contains the implementation of the AES algorithm, which is a widely used
+ * symmetric encryption algorithm. The implementation is created by Mehmet Cagri Aksoy
+ * in 2023 and can be found on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "aes.h"
 #include <openssl/evp.h>

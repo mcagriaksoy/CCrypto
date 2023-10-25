@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file ecc.c
+ * @brief This file contains the implementation of elliptic curve cryptography decryption algorithm.
+ *
+ * This file provides the necessary functions to decrypt data encrypted using elliptic curve cryptography.
+ * The implementation is done by Mehmet Cagri Aksoy in 2023 and can be found on github.com/mcagriaksoy.
+ */
 
 #include "ecc.h"
 #include <stdio.h>

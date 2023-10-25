@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file crc.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of crc checksum functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 
 #ifndef CCRYPTO_CRC_H
 #define CCRYPTO_CRC_H

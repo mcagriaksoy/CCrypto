@@ -48,31 +48,30 @@ $(function() {
 <div class="title">des.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 2023 - created by Mehmet Cagri Aksoy</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// github.com/mcagriaksoy</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef CCRYPTO_DECRYPT_DES_H</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define CCRYPTO_DECRYPT_DES_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../common/types.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;ccrypto_error_type des3_decrypt_with_ecb(</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">const</span> uint8_t *key,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> uint8_t *input,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">size_t</span> input_length,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    uint8_t *output,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">size_t</span> *output_length);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;ccrypto_error_type des3_decrypt_with_cbc(</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">const</span> uint8_t *key,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">const</span> uint8_t *iv,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> uint8_t *input,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">size_t</span> input_length,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    uint8_t *output,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">size_t</span> *output_length);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CCRYPTO_DECRYPT_DES_H</span></div>
+<a href="decryption_2des_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef CCRYPTO_DECRYPT_DES_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define CCRYPTO_DECRYPT_DES_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../common/types.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a> <a class="code" href="decryption_2des_8h.html#acfd490dc8c3af3b4f8aa8b92a73bef61">des3_decrypt_with_ecb</a>(<span class="keyword">const</span> uint8_t *key,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                                         <span class="keyword">const</span> uint8_t *input,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                         <span class="keywordtype">size_t</span> input_length,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                                         uint8_t *output,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                                         <span class="keywordtype">size_t</span> *output_length);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a> <a class="code" href="decryption_2des_8h.html#af2615d92a93f5489c7c2e78e7c808282">des3_decrypt_with_cbc</a>(<span class="keyword">const</span> uint8_t *key,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                         <span class="keyword">const</span> uint8_t *iv,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                         <span class="keyword">const</span> uint8_t *input,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                         <span class="keywordtype">size_t</span> input_length,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                         uint8_t *output,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                         <span class="keywordtype">size_t</span> *output_length);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CCRYPTO_DECRYPT_DES_H</span></div>
+<div class="ttc" id="adecryption_2des_8h_html_acfd490dc8c3af3b4f8aa8b92a73bef61"><div class="ttname"><a href="decryption_2des_8h.html#acfd490dc8c3af3b4f8aa8b92a73bef61">des3_decrypt_with_ecb</a></div><div class="ttdeci">ccrypto_error_type des3_decrypt_with_ecb(const uint8_t *key, const uint8_t *input, size_t input_length, uint8_t *output, size_t *output_length)</div><div class="ttdoc">Decrypts data using the Triple DES algorithm in ECB mode.</div><div class="ttdef"><b>Definition:</b> des.c:15</div></div>
+<div class="ttc" id="adecryption_2des_8h_html_af2615d92a93f5489c7c2e78e7c808282"><div class="ttname"><a href="decryption_2des_8h.html#af2615d92a93f5489c7c2e78e7c808282">des3_decrypt_with_cbc</a></div><div class="ttdeci">ccrypto_error_type des3_decrypt_with_cbc(const uint8_t *key, const uint8_t *iv, const uint8_t *input, size_t input_length, uint8_t *output, size_t *output_length)</div><div class="ttdoc">Decrypts data using the Triple DES algorithm in CBC mode.</div><div class="ttdef"><b>Definition:</b> des.c:75</div></div>
+<div class="ttc" id="atypes_8h_html_a688b8732c5a7ba9ebd66da009b82d16c"><div class="ttname"><a href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a></div><div class="ttdeci">unsigned int ccrypto_error_type</div><div class="ttdoc">Type definition for error codes used in CCrypto library.</div><div class="ttdef"><b>Definition:</b> types.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -48,19 +48,28 @@ $(function() {
 <div class="title">des.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 2023 - created by Mehmet Cagri Aksoy</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// github.com/mcagriaksoy</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef CCRYPTO_DES_H</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define CCRYPTO_DES_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../common/types.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;ccrypto_error_type des3_encrypt_with_ecb(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *encrypted);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;ccrypto_error_type des3_encrypt_with_cbc(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *vector, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *encrypted);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CCRYPTO_DES_H</span></div>
+<a href="encryption_2des_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef CCRYPTO_DES_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define CCRYPTO_DES_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../common/types.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<a class="code" href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a> <a class="code" href="encryption_2des_8h.html#aca9e80721aa4ef9d7a2d8a56329b4c2d">des3_encrypt_with_ecb</a>(<span class="keyword">const</span> uint8_t *key,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                         <span class="keyword">const</span> uint8_t *data,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                         <span class="keywordtype">size_t</span> data_length,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                         uint8_t *encrypted);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a> <a class="code" href="encryption_2des_8h.html#a01faa4fc1c69dcb6049e970256f15b79">des3_encrypt_with_cbc</a>(<span class="keyword">const</span> uint8_t *key,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                         <span class="keyword">const</span> uint8_t *vector,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                                         <span class="keyword">const</span> uint8_t *data,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                         <span class="keywordtype">size_t</span> data_length,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                         uint8_t *encrypted);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CCRYPTO_DES_H</span></div>
+<div class="ttc" id="aencryption_2des_8h_html_a01faa4fc1c69dcb6049e970256f15b79"><div class="ttname"><a href="encryption_2des_8h.html#a01faa4fc1c69dcb6049e970256f15b79">des3_encrypt_with_cbc</a></div><div class="ttdeci">ccrypto_error_type des3_encrypt_with_cbc(const uint8_t *key, const uint8_t *vector, const uint8_t *data, size_t data_length, uint8_t *encrypted)</div><div class="ttdoc">Encrypts the given data using the Triple DES algorithm with CBC method.</div><div class="ttdef"><b>Definition:</b> des.c:70</div></div>
+<div class="ttc" id="aencryption_2des_8h_html_aca9e80721aa4ef9d7a2d8a56329b4c2d"><div class="ttname"><a href="encryption_2des_8h.html#aca9e80721aa4ef9d7a2d8a56329b4c2d">des3_encrypt_with_ecb</a></div><div class="ttdeci">ccrypto_error_type des3_encrypt_with_ecb(const uint8_t *key, const uint8_t *data, size_t data_length, uint8_t *encrypted)</div><div class="ttdoc">Encrypts the given data using the Triple DES algorithm with ECB method.</div><div class="ttdef"><b>Definition:</b> des.c:17</div></div>
+<div class="ttc" id="atypes_8h_html_a688b8732c5a7ba9ebd66da009b82d16c"><div class="ttname"><a href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a></div><div class="ttdeci">unsigned int ccrypto_error_type</div><div class="ttdoc">Type definition for error codes used in CCrypto library.</div><div class="ttdef"><b>Definition:</b> types.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

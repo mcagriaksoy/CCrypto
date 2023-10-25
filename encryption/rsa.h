@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file rsa.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of rsa encryption functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 
 #ifndef CCRYPTO_RSA_H
 #define CCRYPTO_RSA_H

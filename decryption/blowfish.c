@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file blowfish.c
+ * @brief This file contains the implementation of the Blowfish encryption algorithm.
+ *
+ * The Blowfish algorithm is a symmetric-key block cipher that can be used for encryption and decryption.
+ * This implementation was created by Mehmet Cagri Aksoy in 2023 and can be found on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "blowfish.h"
 #include <openssl/blowfish.h>
@@ -7,9 +12,17 @@
 #include <stdio.h>
 #include <string.h>
 
+/**
+ * @brief Macro definition for the minimum key size.
+ */
 #define MIN_KEY_SIZE 4
+/**
+ * @brief Macro definition for the maximum key size.
+ */
 #define MAX_KEY_SIZE 56
-
+/**
+ * @brief Macro definition for the block size.
+ */
 #define BLOCK_SIZE 8
 
 ccrypto_error_type ccrypto_blowfish_decrypt(const uint8_t *key,

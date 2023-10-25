@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file blowfish.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of blowfish decryption functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 
 #ifndef CCRYPTO_DECRYPT_BLOWFISH_H
 #define CCRYPTO_DECRYPT_BLOWFISH_H

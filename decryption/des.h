@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file des.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of des decryption functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 
 #ifndef CCRYPTO_DECRYPT_DES_H
 #define CCRYPTO_DECRYPT_DES_H

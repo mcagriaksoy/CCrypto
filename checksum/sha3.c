@@ -1,5 +1,13 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file sha3.c
+ * @brief Implementation of the SHA-3 hashing algorithm.
+ *
+ * This file contains the implementation of the SHA-3 hashing algorithm,
+ * created by Mehmet Cagri Aksoy in 2023. For more information about the
+ * algorithm, see https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf.
+ *
+ * @see https://github.com/mcagriaksoy
+ */
 
 #include "sha3.h"
 

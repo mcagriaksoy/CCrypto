@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file aes.h
+ * @author Mehmet Cagri Aksoy
+ * @brief This file contains the definition of aes decryption functions used in CCrypto library.
+ * @see https://github.com/mcagriaksoy/CCrypto
+ *
+ */
 
 #ifndef CCRYPTO_DECRYPT_AES_H
 #define CCRYPTO_DECRYPT_AES_H

@@ -1,5 +1,11 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file des.c
+ * @brief Implementation of the Data Encryption Standard (DES) algorithm.
+ *
+ * This file contains the implementation of the DES algorithm, which is a symmetric-key block cipher
+ * used for encryption and decryption of data. The code was created by Mehmet Cagri Aksoy in 2023 and
+ * can be found on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "des.h"
 

@@ -48,18 +48,22 @@ $(function() {
 <div class="title">blowfish.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// 2023 - created by Mehmet Cagri Aksoy</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// github.com/mcagriaksoy</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef CCRYPTO_BLOWFISH_H</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define CCRYPTO_BLOWFISH_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../common/types.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;ccrypto_error_type ccrypto_blowfish_encrypt(<span class="keyword">const</span> uint8_t *key, <span class="keywordtype">size_t</span> key_size, <span class="keyword">const</span> uint8_t *data, <span class="keywordtype">size_t</span> data_size, uint8_t *output);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CCRYPTO_BLOWFISH_H</span></div>
+<a href="encryption_2blowfish_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef CCRYPTO_BLOWFISH_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define CCRYPTO_BLOWFISH_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../common/types.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a> <a class="code" href="encryption_2blowfish_8h.html#a23a68899b3412edd63b258abee90c2ef">ccrypto_blowfish_encrypt</a>(<span class="keyword">const</span> uint8_t *key,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                            <span class="keywordtype">size_t</span> key_size,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                            <span class="keyword">const</span> uint8_t *data,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                            <span class="keywordtype">size_t</span> data_size,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                                            uint8_t *output);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CCRYPTO_BLOWFISH_H</span></div>
+<div class="ttc" id="aencryption_2blowfish_8h_html_a23a68899b3412edd63b258abee90c2ef"><div class="ttname"><a href="encryption_2blowfish_8h.html#a23a68899b3412edd63b258abee90c2ef">ccrypto_blowfish_encrypt</a></div><div class="ttdeci">ccrypto_error_type ccrypto_blowfish_encrypt(const uint8_t *key, size_t key_size, const uint8_t *data, size_t data_size, uint8_t *output)</div><div class="ttdoc">Encrypts data using the Blowfish encryption algorithm.</div><div class="ttdef"><b>Definition:</b> blowfish.c:38</div></div>
+<div class="ttc" id="atypes_8h_html_a688b8732c5a7ba9ebd66da009b82d16c"><div class="ttname"><a href="types_8h.html#a688b8732c5a7ba9ebd66da009b82d16c">ccrypto_error_type</a></div><div class="ttdeci">unsigned int ccrypto_error_type</div><div class="ttdoc">Type definition for error codes used in CCrypto library.</div><div class="ttdef"><b>Definition:</b> types.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

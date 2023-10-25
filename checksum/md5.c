@@ -1,6 +1,12 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
-
+/**
+ * @file md5.c
+ * @brief Implementation of the MD5 checksum algorithm.
+ *
+ * This file contains the implementation of the MD5 checksum algorithm,
+ * which is used to verify the integrity of data by producing a unique
+ * 128-bit hash value. The implementation was created by Mehmet Cagri Aksoy
+ * in 2023 and can be found on GitHub at github.com/mcagriaksoy.
+ */
 #include "md5.h"
 
 #include <openssl/evp.h>

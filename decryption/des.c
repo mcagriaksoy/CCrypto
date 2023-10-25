@@ -1,5 +1,9 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file des.c
+ * @brief This file contains the implementation of the DES decryption algorithm.
+ *
+ * This implementation was created by Mehmet Cagri Aksoy in 2023 and can be found on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "des.h"
 #include <openssl/des.h>

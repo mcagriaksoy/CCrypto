@@ -1,5 +1,11 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file blowfish.c
+ * @brief Implementation of the Blowfish encryption algorithm.
+ *
+ * This file contains the implementation of the Blowfish encryption algorithm,
+ * created by Bruce Schneier in 1993. The implementation was created by Mehmet
+ * Cagri Aksoy in 2023 and is available on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "blowfish.h"
 #include <openssl/blowfish.h>
@@ -7,10 +13,28 @@
 #include <stdio.h>
 #include <string.h>
 
+/**
+ * @brief Macro definition for the minimum key size.
+ */
 #define MIN_KEY_SIZE 4
+/**
+ * @brief Macro definition for the maximum key size.
+ */
 #define MAX_KEY_SIZE 56
+/**
+ * @brief Macro definition for the block size.
+ */
 #define BLOCK_SIZE 8
-
+/**
+ * Encrypts the given data using the Blowfish algorithm with the given key.
+ *
+ * @param key The key to use for encryption.
+ * @param key_size The size of the key in bytes.
+ * @param data The data to encrypt.
+ * @param data_size The size of the data in bytes. Must be a multiple of 8.
+ * @param output The buffer to write the encrypted data to.
+ * @return CCRYPTO_SUCCESS if the encryption was successful, otherwise an error code.
+ */
 ccrypto_error_type ccrypto_blowfish_encrypt(const uint8_t *key,
                                             size_t key_size,
                                             const uint8_t *data,

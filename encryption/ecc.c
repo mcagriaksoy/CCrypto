@@ -1,5 +1,13 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file ecc.c
+ * @brief This file contains the implementation of elliptic curve cryptography functions.
+ *
+ * This file provides functions for generating and verifying digital signatures using elliptic curve cryptography.
+ *
+ * @created 2023 - created by Mehmet Cagri Aksoy
+ * @author
+ *      Mehmet Cagri Aksoy (github.com/mcagriaksoy)
+ */
 
 #include "ecc.h"
 
@@ -8,6 +16,10 @@
 #include <openssl/evp.h>
 #include <string.h>
 
+/**
+ * It defines the size of the public key used in ECC encryption.
+ * The size is defined as 65 bytes.
+ */
 #define PUBLIC_KEY_SIZE 65
 
 ccrypto_error_type ccrypto_ecc_encrypt(const uint8_t *public_key,

@@ -1,5 +1,10 @@
-// 2023 - created by Mehmet Cagri Aksoy
-// github.com/mcagriaksoy
+/**
+ * @file aes.c
+ * @brief This file contains the implementation of the AES decryption algorithm.
+ *
+ * This file provides the implementation of the AES decryption algorithm, created by Mehmet Cagri Aksoy in 2023.
+ * The code can be found on GitHub at github.com/mcagriaksoy.
+ */
 
 #include "aes.h"
 #include <openssl/evp.h>
