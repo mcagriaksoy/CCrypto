@@ -1,3 +1,5 @@
+![CCrypto API Icon](img/ccrypto_icon_256.png)
+
 CCrypto is an API that create layer between user and the complex openssl functions. It aims to create user friendly and easy to use functions for cryptography functions.
 
 ![Screenshot 2023-09-25 111803](https://github.com/mcagriaksoy/CCrypto/assets/20202577/2640d0d5-5fcd-4722-9de3-0df76f4123c9)
@@ -17,28 +19,34 @@ CCrypto is an API that create layer between user and the complex openssl functio
 ## Description
 
 ## Modules
+
 ### Checksum
+
 ccrypto api has checksum support. It supports:
 
 1- CRCs
-  - CRC8
-  - CRC16
-  - CRC32
+
+- CRC8
+- CRC16
+- CRC32
 
 2- MD5
 
 3- SHA3
-  - 224 bit
-  - 256 bit
-  - 384 bit
-  - 512 bit
+
+- 224 bit
+- 256 bit
+- 384 bit
+- 512 bit
 
 ### Encryption / Decryption
+
 ccrypto api has encryption and decryption support. It supports:
 
 1- AES
-  - CBC mode
-  - ECB mode
+
+- CBC mode
+- ECB mode
 
 2- RSA
 
@@ -47,36 +55,37 @@ ccrypto api has encryption and decryption support. It supports:
 4- Blowfish
 
 ## Dependencies
+
 [![OpenSSL - >= 3.0](https://img.shields.io/badge/OpenSSL->=_3.0-2ea44f)](https://www.openssl.org/source/)
 [![CUnit - >= 2.0](https://img.shields.io/badge/CUnit->=_2.0-2ea44f)](https://cunit.sourceforge.net)
 
 ## How to use
+
 As mentioned above, the Ccrypto API uses openssl base. So you need openssl installed in your system.
 
 In ubuntu or any debian distro`s you can type following to install openssl:
 
-` sudo apt-get install libssl-dev `
+`sudo apt-get install libssl-dev`
 
 Also you need to ensure that gcc is installed and supported in your system:
 
-` gcc --version ` 
+`gcc --version`
 
 If there is no version displayed you need to install via following line:
 
-` sudo apt install build-essential gdb `
+`sudo apt install build-essential gdb`
 
 For test purposes ccrypto uses CUnit test framework. You need to install it as well.
 
-` sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev `
+`sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev`
 
 Afterwards you need to type only:
 
-` make `
+`make`
 
 Under /test folder when you trigger the make, you will see the object named `run_all_tests`
 
 `./run_all_tests` with this command you trigger the all tests.
-
 
 </div>
 <h2>Documentation</h2>
